@@ -1,2 +1,62 @@
-<h1>Booking Page</h1>
-<p>Coming soon...</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking</title>
+
+<style>
+body {
+  font-family: -apple-system, sans-serif;
+  margin: 0;
+  padding: 40px;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+input, select {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 12px;
+  border: 1px solid black;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Book Appointment</h1>
+
+<form>
+  <input type="text" placeholder="Your Name" required>
+  <input type="tel" placeholder="Phone Number" required>
+
+  <select>
+    <option>Haircut</option>
+    <option>Hair Color</option>
+    <option>Perm</option>
+  </select>
+
+  <input type="datetime-local">
+
+  <button type="submit">Book Now</button>
+</form>
+
+</body>
+</html>
