@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ESALON</title>
+
   <style>
     body {
       margin: 0;
@@ -11,66 +12,8 @@
       background: #fff;
       color: #000;
     }
-    .hero {
-      min-height: 100vh;
-      margin-top: 80px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      margin-top: 80px;
-    }
-    h1 {
-      font-size: 64px;
-      letter-spacing: -2px;
-    }
-    p {
-      color: #666;
-    }
-    button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      border: 1px solid black;
-      background: transparent;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      <a href="booking.html">
-      <button>Book Now</button>
-      </a>
-      background: black;
-      color: white;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      padding: 60px 20px;
-    }
-    .card {
-  border: 1px solid #000;
-  padding: 40px;
-  text-align: center;
-  transition: 0.3s;
-  display: block;
-}
-    .card:hover {
-      background: black;
-      color: white;
-    }
-    @media(max-width:768px){
-      .grid {
-        grid-template-columns: 1fr;
-      }
-      h1 {
-        font-size: 40px;
-      }
-    }
-  </style>
-     .nav {
+
+    .nav {
       position: fixed;
       top: 0;
       width: 100%;
@@ -80,20 +23,88 @@
       background: white;
       border-bottom: 1px solid #eee;
       z-index: 1000;
-   }
+    }
 
- .logo {
+    .logo {
       font-weight: bold;
-}
+    }
 
-   .nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: black;
-}
+    .nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .hero {
+      min-height: 100vh;
+      margin-top: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 64px;
+      letter-spacing: -2px;
+    }
+
+    p {
+      color: #666;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: 1px solid black;
+      text-decoration: none;
+      color: black;
+      display: inline-block;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: black;
+      color: white;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 60px 20px;
+    }
+
+    .card {
+      border: 1px solid #000;
+      padding: 40px;
+      text-align: center;
+      transition: 0.3s;
+      display: block;
+    }
+
+    .card:hover {
+      background: black;
+      color: white;
+    }
+
+    @media(max-width:768px){
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="nav">
+
+<header class="nav">
   <div class="logo">ESALON</div>
   <nav>
     <a href="index.html">Home</a>
@@ -104,13 +115,13 @@
   </nav>
 </header>
 
-  <section class="hero">
-    <h1>ESALON</h1>
-    <p>Premium Hair System</p>
-    <button>Book Now</button>
-  </section>
+<section class="hero">
+  <h1>ESALON</h1>
+  <p>Premium Hair System</p>
+  <a href="booking.html" class="btn">Book Now</a>
+</section>
 
-  <section class="grid">
+<section class="grid">
   <a href="booking.html" class="card">Booking</a>
   <a href="academy.html" class="card">Academy</a>
   <a href="shop.html" class="card">Shop</a>
