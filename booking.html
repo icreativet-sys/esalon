@@ -9,6 +9,7 @@
 body {
   margin: 0;
   font-family: -apple-system, sans-serif;
+  background: #f7f7f7;
 }
 
 /* NAVBAR */
@@ -19,7 +20,7 @@ body {
   width: 57%;
   display: flex;
   justify-content: space-between;
-  padding: 15px 20px;
+  padding: 15px 30px;
   background: white;
   border-bottom: 1px solid #eee;
   z-index: 1000;
@@ -28,34 +29,53 @@ body {
 .nav a {
   margin-left: 15px;
   text-decoration: none;
-  color: black;
+  color: #333;
   font-size: 14px;
 }
 
-/* PAGE */
+/* MAIN LAYOUT */
 .container {
   margin-top: 100px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+
+/* LEFT IMAGE */
+.left {
+  background: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438') center/cover no-repeat;
+}
+
+/* RIGHT FORM */
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  background: white;
+}
+
+h1 {
+  margin-bottom: 20px;
 }
 
 /* FORM */
 form {
-  max-width: 400px;
-  margin: 30px auto;
   display: flex;
   flex-direction: column;
 }
 
 input, select {
   margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 12px;
+  border: 1px solid #ddd;
+  background: #fafafa;
 }
 
 /* BUTTON */
 button {
-  padding: 12px;
-  border: 1px solid black;
+  padding: 14px;
+  border: none;
   background: black;
   color: white;
   cursor: pointer;
@@ -64,6 +84,16 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .left {
+    height: 250px;
+  }
 }
 </style>
 </head>
@@ -84,22 +114,30 @@ button:hover {
 
 <!-- CONTENT -->
 <div class="container">
-  <h1>Book Appointment</h1>
 
-  <form onsubmit="alert('Амжилттай захиалга илгээлээ!'); return false;">
-    <input type="text" placeholder="Your Name" required>
-    <input type="tel" placeholder="Phone Number" required>
+  <!-- IMAGE -->
+  <div class="left"></div>
 
-    <select>
-      <option>Haircut</option>
-      <option>Hair Color</option>
-      <option>Perm</option>
-    </select>
+  <!-- FORM -->
+  <div class="right">
+    <h1>Book Appointment</h1>
 
-    <input type="datetime-local" required>
+    <form onsubmit="alert('Амжилттай захиалга илгээлээ!'); return false;">
+      <input type="text" placeholder="Your Name" required>
+      <input type="tel" placeholder="Phone Number" required>
 
-    <button type="submit">Book Now</button>
-  </form>
+      <select>
+        <option>Haircut</option>
+        <option>Hair Color</option>
+        <option>Perm</option>
+      </select>
+
+      <input type="datetime-local" required>
+
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
+
 </div>
 
 </body>
