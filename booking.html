@@ -7,18 +7,41 @@
 
 <style>
 body {
-  font-family: -apple-system, sans-serif;
   margin: 0;
-  padding: 40px;
+  font-family: -apple-system, sans-serif;
 }
 
-h1 {
+/* NAVBAR */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
+}
+
+.nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+}
+
+/* PAGE */
+.container {
+  margin-top: 100px;
   text-align: center;
 }
 
+/* FORM */
 form {
   max-width: 400px;
-  margin: auto;
+  margin: 30px auto;
   display: flex;
   flex-direction: column;
 }
@@ -29,52 +52,55 @@ input, select {
   border: 1px solid #ccc;
 }
 
+/* BUTTON */
 button {
   padding: 12px;
   border: 1px solid black;
   background: black;
   color: white;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-.success {
-  text-align: center;
-  margin-top: 20px;
-  color: green;
-  display: none;
+button:hover {
+  opacity: 0.8;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Book Appointment</h1>
-
-<form id="bookingForm">
-  <input type="text" placeholder="Your Name" required>
-  <input type="tel" placeholder="Phone Number" required>
-
-  <select>
-    <option>Haircut</option>
-    <option>Hair Color</option>
-    <option>Perm</option>
-  </select>
-
-  <input type="datetime-local">
-
-  <button type="submit">Book Now</button>
-</form>
-
-<div class="success" id="successMsg">
-  ✅ Захиалга амжилттай илгээгдлээ!
+<!-- NAVBAR -->
+<div class="nav">
+  <div><strong>ESALON</strong></div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="booking.html">Booking</a>
+    <a href="academy.html">Academy</a>
+    <a href="shop.html">Shop</a>
+    <a href="franchise.html">Franchise</a>
+  </div>
 </div>
 
-<script>
-document.getElementById("bookingForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  document.getElementById("successMsg").style.display = "block";
-});
-</script>
+<!-- CONTENT -->
+<div class="container">
+  <h1>Book Appointment</h1>
+
+  <form onsubmit="alert('Амжилттай захиалга илгээлээ!'); return false;">
+    <input type="text" placeholder="Your Name" required>
+    <input type="tel" placeholder="Phone Number" required>
+
+    <select>
+      <option>Haircut</option>
+      <option>Hair Color</option>
+      <option>Perm</option>
+    </select>
+
+    <input type="datetime-local" required>
+
+    <button type="submit">Book Now</button>
+  </form>
+</div>
 
 </body>
 </html>
