@@ -3,20 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Booking</title>
+<title>Booking | ESALON</title>
 
 <style>
 body {
   margin: 0;
   font-family: -apple-system, sans-serif;
-  background: #f7f7f7;
+  background: #f5f5f5;
 }
 
-/* NAV */
+/* NAVBAR */
 .nav {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
   background: white;
   border-bottom: 1px solid #eee;
@@ -33,11 +32,12 @@ body {
   padding: 0 20px;
 }
 
-.nav-left {
+.logo {
   font-weight: bold;
+  font-size: 18px;
 }
 
-.nav-right a {
+.nav a {
   margin-left: 25px;
   text-decoration: none;
   color: #333;
@@ -52,38 +52,66 @@ body {
   min-height: 100vh;
 }
 
+/* LEFT IMAGE */
 .left {
-  background: url('https://i.pinimg.com/736x/de/f2/30/def23092180c49688f0d51bb50e86d7e.jpg') center/cover no-repeat;
+  background: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover no-repeat;
 }
 
+/* RIGHT SIDE */
 .right {
+  background: white;
+  padding: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 60px;
-  background: white;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+/* CALENDAR */
+iframe {
+  border-radius: 10px;
+  border: 1px solid #eee;
 }
 
 /* FORM */
 form {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
 }
 
 input, select {
   margin-bottom: 15px;
-  padding: 12px;
+  padding: 14px;
   border: 1px solid #ddd;
   background: #fafafa;
+  border-radius: 8px;
+  font-size: 14px;
 }
 
+/* BUTTON */
 button {
   padding: 14px;
   border: none;
   background: black;
   color: white;
+  border-radius: 8px;
   cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 
 /* MOBILE */
@@ -91,8 +119,13 @@ button {
   .container {
     grid-template-columns: 1fr;
   }
+
   .left {
     height: 250px;
+  }
+
+  .right {
+    padding: 30px;
   }
 }
 </style>
@@ -103,8 +136,9 @@ button {
 <!-- NAV -->
 <div class="nav">
   <div class="nav-inner">
-    <div class="nav-left">ESALON</div>
-    <div class="nav-right">
+    <div class="logo">ESALON</div>
+
+    <div>
       <a href="index.html">Home</a>
       <a href="booking.html">Booking</a>
       <a href="academy.html">Academy</a>
@@ -114,19 +148,35 @@ button {
   </div>
 </div>
 
+<!-- CONTENT -->
 <div class="container">
 
+  <!-- IMAGE -->
   <div class="left"></div>
 
+  <!-- RIGHT -->
   <div class="right">
+
     <h1>Book Appointment</h1>
 
-    <!-- FORM -->
-    <form onsubmit="alert('Амжилттай захиалга илгээлээ!'); return false;">
+    <!-- STEP 1 -->
+    <h3>Select Available Time</h3>
+
+    <iframe 
+      src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com"
+      width="100%" 
+      height="300">
+    </iframe>
+
+    <!-- STEP 2 -->
+    <h3>Enter Your Info</h3>
+
+    <form onsubmit="alert('Захиалга амжилттай! Бид удахгүй холбогдоно.'); return false;">
       <input type="text" placeholder="Your Name" required>
       <input type="tel" placeholder="Phone Number" required>
 
-      <select>
+      <select required>
+        <option value="">Select Service</option>
         <option>Haircut</option>
         <option>Hair Color</option>
         <option>Perm</option>
@@ -134,18 +184,8 @@ button {
 
       <input type="datetime-local" required>
 
-      <button type="submit">Book Now</button>
+      <button type="submit">Confirm Booking</button>
     </form>
-
-    <!-- GOOGLE CALENDAR -->
-    <h2 style="margin-top:40px;">Available Time</h2>
-
-    <iframe 
-      src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com"
-      style="border:0" 
-      width="100%" 
-      height="400">
-    </iframe>
 
   </div>
 
