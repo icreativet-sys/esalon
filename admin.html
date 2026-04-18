@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+
+<style>
+body {
+  font-family: sans-serif;
+  padding:40px;
+}
+
+input, textarea {
+  display:block;
+  margin-bottom:10px;
+  padding:10px;
+  width:300px;
+}
+
+button {
+  padding:10px;
+  background:black;
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Control Panel</h1>
+
+<h3>Hero Text</h3>
+<input id="title" placeholder="Title">
+<textarea id="desc" placeholder="Description"></textarea>
+
+<button onclick="save()">Save</button>
+
+<script>
+if(localStorage.getItem("admin") !== "true"){
+  window.location.href = "login.html";
+}
+
+function save(){
+  localStorage.setItem("title", document.getElementById("title").value);
+  localStorage.setItem("desc", document.getElementById("desc").value);
+  alert("Saved!");
+}
+</script>
+
+</body>
+</html>
