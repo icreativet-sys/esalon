@@ -9,53 +9,65 @@
 body {
   margin: 0;
   font-family: -apple-system, sans-serif;
+  background: #f7f7f7;
 }
 
-/* NAVBAR */
+/* NAV */
 .nav {
   position: fixed;
   top: 0;
   left: 0;
-  width: 57%;
+  width: 100%;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 0 40px;
   background: white;
   border-bottom: 1px solid #eee;
   z-index: 1000;
 }
 
-.nav a {
-  margin-left: 15px;
+.nav-left {
+  font-weight: bold;
+}
+
+.nav-right a {
+  margin-left: 25px;
   text-decoration: none;
-  color: black;
+  color: #333;
   font-size: 14px;
 }
 
 /* HERO */
 .hero {
-  margin-top: 70px;
-  height: 70vh;
+  margin-top: 60px;
+  height: 90vh;
+  background: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
-/* BUTTON */
+.hero h1 {
+  font-size: 64px;
+  margin: 0;
+}
+
 .btn {
   margin-top: 20px;
-  padding: 12px 24px;
-  border: 1px solid black;
+  padding: 14px 28px;
+  border: 1px solid white;
   text-decoration: none;
-  color: black;
+  color: white;
   transition: 0.3s;
 }
 
 .btn:hover {
-  background: black;
-  color: white;
+  background: white;
+  color: black;
 }
 
 /* GRID */
@@ -63,15 +75,16 @@ body {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   gap: 20px;
-  padding: 40px 20px;
-  margin-top: -40px;
+  padding: 60px 20px;
+  background: white;
 }
 
-/* CARD */
 .card {
-  border: 1px solid black;
+  border: 1px solid #eee;
   padding: 40px;
   text-align: center;
+  text-decoration: none;
+  color: black;
   transition: 0.3s;
 }
 
@@ -86,17 +99,18 @@ body {
   .grid {
     grid-template-columns: 1fr;
   }
+  .hero h1 {
+    font-size: 40px;
+  }
 }
 </style>
-
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <div class="nav">
-  <div><strong>ESALON</strong></div>
-  <div>
+  <div class="nav-left">ESALON</div>
+  <div class="nav-right">
     <a href="index.html">Home</a>
     <a href="booking.html">Booking</a>
     <a href="academy.html">Academy</a>
@@ -105,14 +119,12 @@ body {
   </div>
 </div>
 
-<!-- HERO -->
 <div class="hero">
   <h1>ESALON</h1>
   <p>Premium Hair System</p>
   <a href="booking.html" class="btn">Book Now</a>
 </div>
 
-<!-- GRID -->
 <div class="grid">
   <a href="booking.html" class="card">Booking</a>
   <a href="academy.html" class="card">Academy</a>
