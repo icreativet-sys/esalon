@@ -13,12 +13,14 @@
     }
     .hero {
       min-height: 100vh;
+      margin-top: 80px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 20px;
+      margin-top: 80px;
     }
     h1 {
       font-size: 64px;
@@ -65,8 +67,39 @@
       }
     }
   </style>
+  .nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: black;
+}
 </head>
 <body>
+  <header class="nav">
+  <div class="logo">ESALON</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="booking.html">Booking</a>
+    <a href="academy.html">Academy</a>
+    <a href="shop.html">Shop</a>
+    <a href="franchise.html">Franchise</a>
+  </nav>
+</header>
 
   <section class="hero">
     <h1>ESALON</h1>
