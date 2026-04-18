@@ -1,45 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ESALON</title>
 
 <style>
-body { margin:0; font-family:-apple-system,sans-serif; background:#f7f7f7; }
+body {margin:0;font-family:sans-serif;}
 
-.nav {
-  position:fixed; top:0; width:100%;
-  background:white; border-bottom:1px solid #eee;
-}
+.nav {position:fixed;width:100%;background:white;border-bottom:1px solid #eee;}
 
 .nav-inner {
-  max-width:1200px; margin:auto; height:60px;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:0 20px;
+  max-width:1200px;margin:auto;height:60px;
+  display:flex;justify-content:space-between;align-items:center;padding:0 20px;
 }
 
-.nav-right a { margin-left:20px; text-decoration:none; color:#333; }
+.nav a {margin-left:20px;text-decoration:none;color:black;}
 
 .hero {
-  margin-top:60px; height:90vh;
+  margin-top:60px;height:90vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
   background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover;
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
   color:white;
 }
 
-.btn {
-  padding:12px 24px; border:1px solid white;
-  color:white; text-decoration:none;
-}
-
 .grid {
-  display:grid; grid-template-columns:repeat(4,1fr);
-  gap:20px; padding:40px; background:white;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;padding:40px;background:white;
 }
 
 .card {
-  padding:40px; border:1px solid #eee; text-align:center;
+  padding:40px;border:1px solid #eee;text-align:center;
+  text-decoration:none;color:black;
 }
 </style>
 </head>
@@ -50,7 +41,7 @@ body { margin:0; font-family:-apple-system,sans-serif; background:#f7f7f7; }
   <div class="nav-inner">
     <div>ESALON</div>
 
-    <div class="nav-right">
+    <div>
       <a href="index.html">Home</a>
       <a href="booking.html">Booking</a>
       <a href="login.html">Login</a>
@@ -62,14 +53,13 @@ body { margin:0; font-family:-apple-system,sans-serif; background:#f7f7f7; }
 <div class="hero">
   <h1 id="heroTitle">ESALON</h1>
   <p id="heroDesc">Premium Hair System</p>
-  <a href="booking.html" class="btn">Book Now</a>
 </div>
 
 <div class="grid">
-  <div class="card">Booking</div>
-  <div class="card">Academy</div>
-  <div class="card">Shop</div>
-  <div class="card">Franchise</div>
+  <a href="booking.html" class="card">Booking</a>
+  <a href="academy.html" class="card">Academy</a>
+  <a href="shop.html" class="card">Shop</a>
+  <a href="franchise.html" class="card">Franchise</a>
 </div>
 
 <script>
