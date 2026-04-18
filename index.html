@@ -11,51 +11,81 @@ body {
   font-family: -apple-system, sans-serif;
 }
 
+/* NAVBAR */
 .nav {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
+  align-items: center;
+  padding: 15px 20px;
   background: white;
   border-bottom: 1px solid #eee;
+  z-index: 1000;
 }
 
 .nav a {
-  margin-left: 20px;
+  margin-left: 15px;
   text-decoration: none;
   color: black;
+  font-size: 14px;
 }
 
+/* HERO */
 .hero {
-  margin-top: 80px;
-  height: 80vh;
+  margin-top: 70px;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+/* BUTTON */
 .btn {
   margin-top: 20px;
   padding: 12px 24px;
   border: 1px solid black;
   text-decoration: none;
   color: black;
+  transition: 0.3s;
 }
 
+.btn:hover {
+  background: black;
+  color: white;
+}
+
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   gap: 20px;
-  padding: 40px;
+  padding: 40px 20px;
+  margin-top: -40px;
 }
 
+/* CARD */
 .card {
   border: 1px solid black;
   padding: 40px;
   text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background: black;
+  color: white;
+  transform: translateY(-5px);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 
@@ -63,9 +93,11 @@ body {
 
 <body>
 
+<!-- NAVBAR -->
 <div class="nav">
-  <div>ESALON</div>
+  <div><strong>ESALON</strong></div>
   <div>
+    <a href="index.html">Home</a>
     <a href="booking.html">Booking</a>
     <a href="academy.html">Academy</a>
     <a href="shop.html">Shop</a>
@@ -73,12 +105,14 @@ body {
   </div>
 </div>
 
+<!-- HERO -->
 <div class="hero">
   <h1>ESALON</h1>
   <p>Premium Hair System</p>
   <a href="booking.html" class="btn">Book Now</a>
 </div>
 
+<!-- GRID -->
 <div class="grid">
   <a href="booking.html" class="card">Booking</a>
   <a href="academy.html" class="card">Academy</a>
