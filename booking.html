@@ -36,6 +36,13 @@ button {
   color: white;
   cursor: pointer;
 }
+
+.success {
+  text-align: center;
+  margin-top: 20px;
+  color: green;
+  display: none;
+}
 </style>
 </head>
 
@@ -43,7 +50,7 @@ button {
 
 <h1>Book Appointment</h1>
 
-<form onsubmit="alert('Амжилттай захиалга илгээлээ!'); return false;">
+<form id="bookingForm">
   <input type="text" placeholder="Your Name" required>
   <input type="tel" placeholder="Phone Number" required>
 
@@ -57,6 +64,17 @@ button {
 
   <button type="submit">Book Now</button>
 </form>
+
+<div class="success" id="successMsg">
+  ✅ Захиалга амжилттай илгээгдлээ!
+</div>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  document.getElementById("successMsg").style.display = "block";
+});
+</script>
 
 </body>
 </html>
