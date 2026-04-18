@@ -69,30 +69,18 @@ h1 {
 }
 
 /* FORM */
-form {
-  display: flex;
-  flex-direction: column;
-}
+<div class="right">
+  <h1>Select Time</h1>
 
-input, select {
-  margin-bottom: 15px;
-  padding: 12px;
-  border: 1px solid #ddd;
-  background: #fafafa;
-}
-
-button {
-  padding: 14px;
-  border: none;
-  background: black;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
+  <iframe 
+    src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com"
+    style="border:0" 
+    width="100%" 
+    height="500" 
+    frameborder="0" 
+    scrolling="no">
+  </iframe>
+</div>
 /* MOBILE */
 @media(max-width:768px){
   .container {
