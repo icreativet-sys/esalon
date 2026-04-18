@@ -6,178 +6,112 @@
 <title>Booking | ESALON</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: -apple-system, sans-serif;
-  background: #f5f5f5;
-}
+body { margin:0; font-family:-apple-system,sans-serif; background:#f5f5f5; }
 
-/* NAV */
 .nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: white;
-  border-bottom: 1px solid #eee;
-  z-index: 1000;
+  position:fixed; top:0; width:100%;
+  background:white; border-bottom:1px solid #eee;
 }
 
 .nav-inner {
-  max-width: 1200px;
-  margin: auto;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
+  max-width:1200px; margin:auto; height:60px;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0 20px;
 }
 
-.logo {
-  font-weight: bold;
-}
+.nav a { margin-left:20px; text-decoration:none; color:#333; }
 
-.nav a {
-  margin-left: 25px;
-  text-decoration: none;
-  color: #333;
-}
-
-/* LAYOUT */
 .container {
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
+  margin-top:60px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:100vh;
 }
 
 .left {
-  background: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover no-repeat;
+  background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover;
 }
 
-.right {
-  background: white;
-  padding: 60px;
+.right { background:white; padding:40px; }
+
+select,input {
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
 }
 
-/* TEXT */
-h1 { margin-bottom: 10px; }
-h3 { margin-top: 20px; }
-
-/* SELECT */
-select {
-  margin-bottom: 15px;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: #fafafa;
-}
-
-/* FORM */
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-input {
-  margin-bottom: 15px;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-/* BUTTON */
 button {
-  padding: 14px;
-  border: none;
-  background: black;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .container {
-    grid-template-columns: 1fr;
-  }
-  .left {
-    height: 250px;
-  }
+  padding:10px;
+  background:black;
+  color:white;
+  border:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <div class="nav">
   <div class="nav-inner">
-    <div class="logo">ESALON</div>
+    <div>ESALON</div>
+
     <div>
       <a href="index.html">Home</a>
       <a href="booking.html">Booking</a>
+      <a href="login.html">Login</a>
+      <a id="adminBtn" href="admin.html" style="display:none;">Control Panel</a>
     </div>
   </div>
 </div>
 
 <div class="container">
 
-  <div class="left"></div>
+<div class="left"></div>
 
-  <div class="right">
+<div class="right">
 
-    <h1>Book Appointment</h1>
+<h2>Салбар сонгох</h2>
+<select id="branchSelect">
+  <option value="ulaan">Улсын их дэлгүүр</option>
+  <option value="zaisan">Зайсан</option>
+</select>
 
-    <!-- SALBAR -->
-    <h3>Салбар сонгох</h3>
-    <select id="branchSelect">
-      <option value="ulaan">Улсын их дэлгүүр</option>
-      <option value="zaisan">Зайсан хийл</option>
-    </select>
+<iframe id="calendarFrame"
+src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com"
+width="100%" height="250"></iframe>
 
-    <!-- CALENDAR -->
-    <iframe 
-      id="calendarFrame"
-      src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com"
-      width="100%" 
-      height="300">
-    </iframe>
+<h2>Мэдээлэл</h2>
 
-    <!-- FORM -->
-    <h3>Таны мэдээлэл</h3>
-    <form onsubmit="alert('Захиалга амжилттай!'); return false;">
-      <input type="text" placeholder="Таны нэр" required>
-      <input type="tel" placeholder="Утасны дугаар" required>
+<form onsubmit="alert('Захиалга амжилттай');return false;">
+<input placeholder="Нэр">
+<input placeholder="Утас">
 
-      <select required>
-        <option value="">Үйлчилгээ сонгох</option>
-        <option>Haircut</option>
-        <option>Hair Color</option>
-        <option>Perm</option>
-      </select>
+<select>
+<option>Haircut</option>
+<option>Color</option>
+</select>
 
-      <input type="datetime-local" required>
+<input type="datetime-local">
 
-      <button type="submit">Захиалах</button>
-    </form>
+<button>Захиалах</button>
+</form>
 
-  </div>
+</div>
 
 </div>
 
 <script>
-const select = document.getElementById("branchSelect");
-const frame = document.getElementById("calendarFrame");
+if(localStorage.getItem("admin")==="true"){
+  document.getElementById("adminBtn").style.display="inline";
+}
 
-select.addEventListener("change", function() {
-  if (this.value === "ulaan") {
-    frame.src = "https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com";
-  } else {
-    frame.src = "https://calendar.google.com/calendar/embed?src=4d105fb95fdd308e777bef0fee82f3d57b25f04dfaef0737a0d62f587815ef9d@group.calendar.google.com";
+document.getElementById("branchSelect").addEventListener("change",function(){
+  const frame=document.getElementById("calendarFrame");
+
+  if(this.value==="ulaan"){
+    frame.src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com";
+  }else{
+    frame.src="https://calendar.google.com/calendar/embed?src=4d105fb95fdd308e777bef0fee82f3d57b25f04dfaef0737a0d62f587815ef9d@group.calendar.google.com";
   }
 });
 </script>
