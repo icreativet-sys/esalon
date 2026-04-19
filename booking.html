@@ -1,67 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Booking | ESALON</title>
+<title>Booking</title>
 
 <style>
-body { margin:0; font-family:-apple-system,sans-serif; background:#f5f5f5; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:sans-serif;background:#111;color:white;}
 
-.nav {
-  position:fixed; top:0; width:100%;
-  background:white; border-bottom:1px solid #eee;
+.nav{position:fixed;top:0;width:100%;background:black;}
+.nav-inner{display:flex;justify-content:space-between;padding:20px;}
+.nav a{color:#ccc;margin-left:20px;text-decoration:none;}
+.nav a:hover{color:white;}
+
+.container{
+margin-top:80px;
+display:grid;
+grid-template-columns:1fr 1fr;
+min-height:100vh;
 }
 
-.nav-inner {
-  max-width:1200px; margin:auto; height:60px;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:0 20px;
+.left{
+background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover;
 }
 
-.nav a { margin-left:20px; text-decoration:none; color:#333; }
-
-.container {
-  margin-top:60px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  min-height:100vh;
+.right{
+padding:60px;
+background:#1a1a1a;
 }
 
-.left {
-  background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover;
+input,select{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+background:#111;
+border:1px solid #333;
+color:white;
 }
 
-.right { background:white; padding:40px; }
-
-select,input {
-  width:100%;
-  padding:10px;
-  margin-bottom:10px;
+button{
+padding:12px;
+background:white;
+color:black;
+border:none;
+cursor:pointer;
+transition:0.3s;
 }
 
-button {
-  padding:10px;
-  background:black;
-  color:white;
-  border:none;
-}
+button:hover{background:#ddd;}
 </style>
 </head>
 
 <body>
 
 <div class="nav">
-  <div class="nav-inner">
-    <div>ESALON</div>
-
-    <div>
-      <a href="index.html">Home</a>
-      <a href="booking.html">Booking</a>
-      <a href="login.html">Login</a>
-      <a id="adminBtn" href="admin.html" style="display:none;">Control Panel</a>
-    </div>
-  </div>
+<div class="nav-inner">
+<div>ESALON</div>
+<div>
+<a href="index.html">Home</a>
+<a href="login.html">Login</a>
+<a id="adminBtn" href="admin.html" style="display:none;">Admin</a>
+</div>
+</div>
 </div>
 
 <div class="container">
@@ -69,51 +69,26 @@ button {
 <div class="left"></div>
 
 <div class="right">
+<h2>Book Appointment</h2>
 
-<h2>Салбар сонгох</h2>
-<select id="branchSelect">
-  <option value="ulaan">Улсын их дэлгүүр</option>
-  <option value="zaisan">Зайсан</option>
-</select>
-
-<iframe id="calendarFrame"
-src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com"
-width="100%" height="250"></iframe>
-
-<h2>Мэдээлэл</h2>
-
-<form onsubmit="alert('Захиалга амжилттай');return false;">
+<form onsubmit="alert('Амжилттай захиалга!');return false;">
 <input placeholder="Нэр">
 <input placeholder="Утас">
-
 <select>
 <option>Haircut</option>
 <option>Color</option>
 </select>
-
 <input type="datetime-local">
-
-<button>Захиалах</button>
+<button>Book Now</button>
 </form>
 
 </div>
-
 </div>
 
 <script>
 if(localStorage.getItem("admin")==="true"){
-  document.getElementById("adminBtn").style.display="inline";
+adminBtn.style.display="inline";
 }
-
-document.getElementById("branchSelect").addEventListener("change",function(){
-  const frame=document.getElementById("calendarFrame");
-
-  if(this.value==="ulaan"){
-    frame.src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com";
-  }else{
-    frame.src="https://calendar.google.com/calendar/embed?src=4d105fb95fdd308e777bef0fee82f3d57b25f04dfaef0737a0d62f587815ef9d@group.calendar.google.com";
-  }
-});
 </script>
 
 </body>
