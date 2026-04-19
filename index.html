@@ -1,36 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ESALON</title>
 
 <style>
-body {margin:0;font-family:sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,sans-serif;background:#0f0f0f;color:white;}
 
-.nav {position:fixed;width:100%;background:white;border-bottom:1px solid #eee;}
-
-.nav-inner {
-  max-width:1200px;margin:auto;height:60px;
-  display:flex;justify-content:space-between;align-items:center;padding:0 20px;
+.nav{
+position:fixed;top:0;width:100%;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+z-index:100;
 }
 
-.nav a {margin-left:20px;text-decoration:none;color:black;}
-
-.hero {
-  margin-top:60px;height:90vh;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover;
-  color:white;
+.nav-inner{
+max-width:1200px;margin:auto;height:70px;
+display:flex;justify-content:space-between;align-items:center;
+padding:0 20px;
 }
 
-.grid {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;padding:40px;background:white;
+.logo{font-weight:bold;font-size:20px;}
+
+.nav a{
+margin-left:25px;text-decoration:none;color:#ccc;
+transition:0.3s;
 }
 
-.card {
-  padding:40px;border:1px solid #eee;text-align:center;
-  text-decoration:none;color:black;
+.nav a:hover{
+color:white;
+}
+
+.hero{
+height:100vh;
+background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover;
+display:flex;flex-direction:column;justify-content:center;align-items:center;
+text-align:center;
+position:relative;
+}
+
+.hero::after{
+content:"";position:absolute;inset:0;background:rgba(0,0,0,0.6);
+}
+
+.hero *{position:relative;z-index:2;}
+
+.hero h1{font-size:60px;letter-spacing:2px;}
+.hero p{margin:20px 0;color:#ccc;}
+
+.btn{
+padding:12px 30px;
+border:1px solid white;
+text-decoration:none;color:white;
+transition:0.3s;
+}
+
+.btn:hover{
+background:white;color:black;
+}
+
+.section{
+padding:80px 20px;
+max-width:1200px;margin:auto;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.card{
+background:#1a1a1a;
+padding:40px;
+text-align:center;
+transition:0.3s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
+
+.footer{
+text-align:center;
+padding:40px;
+color:#777;
 }
 </style>
 </head>
@@ -38,40 +96,44 @@ body {margin:0;font-family:sans-serif;}
 <body>
 
 <div class="nav">
-  <div class="nav-inner">
-    <div>ESALON</div>
-
-    <div>
-      <a href="index.html">Home</a>
-      <a href="booking.html">Booking</a>
-      <a href="login.html">Login</a>
-      <a id="adminBtn" href="admin.html" style="display:none;">Control Panel</a>
-    </div>
-  </div>
+<div class="nav-inner">
+<div class="logo">ESALON</div>
+<div>
+<a href="index.html">Home</a>
+<a href="booking.html">Booking</a>
+<a href="academy.html">Academy</a>
+<a href="shop.html">Shop</a>
+<a href="franchise.html">Franchise</a>
+<a href="login.html">Login</a>
+<a id="adminBtn" href="admin.html" style="display:none;">Admin</a>
+</div>
+</div>
 </div>
 
 <div class="hero">
-  <h1 id="heroTitle">ESALON</h1>
-  <p id="heroDesc">Premium Hair System</p>
+<h1 id="heroTitle">ESALON</h1>
+<p id="heroDesc">Premium Hair Experience</p>
+<a href="booking.html" class="btn">Book Now</a>
 </div>
 
+<div class="section">
 <div class="grid">
-  <a href="booking.html" class="card">Booking</a>
-  <a href="academy.html" class="card">Academy</a>
-  <a href="shop.html" class="card">Shop</a>
-  <a href="franchise.html" class="card">Franchise</a>
+<div class="card" onclick="location.href='booking.html'">Booking</div>
+<div class="card" onclick="location.href='academy.html'">Academy</div>
+<div class="card" onclick="location.href='shop.html'">Shop</div>
+<div class="card" onclick="location.href='franchise.html'">Franchise</div>
 </div>
+</div>
+
+<div class="footer">© ESALON 2026</div>
 
 <script>
 if(localStorage.getItem("admin")==="true"){
-  document.getElementById("adminBtn").style.display="inline";
+document.getElementById("adminBtn").style.display="inline";
 }
 
-document.getElementById("heroTitle").innerText =
-  localStorage.getItem("title") || "ESALON";
-
-document.getElementById("heroDesc").innerText =
-  localStorage.getItem("desc") || "Premium Hair System";
+heroTitle.innerText=localStorage.getItem("title")||"ESALON";
+heroDesc.innerText=localStorage.getItem("desc")||"Premium Hair Experience";
 </script>
 
 </body>
