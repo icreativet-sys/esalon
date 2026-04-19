@@ -8,9 +8,21 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:sans-serif;background:#111;color:white;}
 
-.nav{position:fixed;top:0;width:100%;background:black;}
-.nav-inner{display:flex;justify-content:space-between;padding:20px;}
-.nav a{color:#ccc;margin-left:20px;text-decoration:none;}
+.nav{
+position:fixed;top:0;width:100%;
+background:black;z-index:100;
+}
+
+.nav-inner{
+display:flex;justify-content:space-between;
+padding:20px;
+}
+
+.nav a{
+color:#ccc;margin-left:20px;text-decoration:none;
+transition:0.3s;
+}
+
 .nav a:hover{color:white;}
 
 .container{
@@ -22,20 +34,37 @@ min-height:100vh;
 
 .left{
 background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover;
+position:relative;
+}
+
+.left::after{
+content:"";
+position:absolute;inset:0;
+background:rgba(0,0,0,0.5);
 }
 
 .right{
-padding:60px;
+padding:50px;
 background:#1a1a1a;
+overflow:auto;
 }
 
-input,select{
+h2{margin-bottom:20px;}
+
+select,input{
 width:100%;
 padding:12px;
 margin-bottom:15px;
 background:#111;
 border:1px solid #333;
 color:white;
+}
+
+iframe{
+width:100%;
+height:300px;
+border:none;
+margin-bottom:20px;
 }
 
 button{
@@ -47,7 +76,10 @@ cursor:pointer;
 transition:0.3s;
 }
 
-button:hover{background:#ddd;}
+button:hover{
+background:#ddd;
+transform:scale(1.03);
+}
 </style>
 </head>
 
@@ -69,25 +101,66 @@ button:hover{background:#ddd;}
 <div class="left"></div>
 
 <div class="right">
-<h2>Book Appointment</h2>
 
-<form onsubmit="alert('Амжилттай захиалга!');return false;">
-<input placeholder="Нэр">
-<input placeholder="Утас">
-<select>
+<h2>Цаг захиалах</h2>
+
+<!-- САЛБАР СОНГОХ -->
+<select id="branchSelect">
+<option value="ulaan">Улсын их дэлгүүр</option>
+<option value="zaisan">Зайсан</option>
+</select>
+
+<!-- CALENDAR -->
+<iframe id="calendarFrame"
+src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com">
+</iframe>
+
+<h2>Мэдээлэл</h2>
+
+<form onsubmit="submitBooking(event)">
+<input id="name" placeholder="Нэр" required>
+<input id="phone" placeholder="Утас" required>
+
+<select id="service">
 <option>Haircut</option>
 <option>Color</option>
+<option>Treatment</option>
 </select>
-<input type="datetime-local">
-<button>Book Now</button>
+
+<input id="time" type="datetime-local" required>
+
+<button>Захиалах</button>
 </form>
 
 </div>
+
 </div>
 
 <script>
 if(localStorage.getItem("admin")==="true"){
 adminBtn.style.display="inline";
+}
+
+// Calendar switch
+branchSelect.addEventListener("change",function(){
+if(this.value==="ulaan"){
+calendarFrame.src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com";
+}else{
+calendarFrame.src="https://calendar.google.com/calendar/embed?src=4d105fb95fdd308e777bef0fee82f3d57b25f04dfaef0737a0d62f587815ef9d@group.calendar.google.com";
+}
+});
+
+// FORM
+function submitBooking(e){
+e.preventDefault();
+
+alert(
+"Захиалга амжилттай ✔\n\n" +
+"Нэр: "+name.value+"\n" +
+"Утас: "+phone.value+"\n" +
+"Үйлчилгээ: "+service.value+"\n" +
+"Цаг: "+time.value
+);
 }
 </script>
 
