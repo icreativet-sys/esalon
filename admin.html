@@ -1,48 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Panel</title>
+<title>Admin</title>
 
 <style>
-body {
-  font-family: sans-serif;
-  padding:40px;
+body{background:#111;color:white;font-family:sans-serif;padding:40px;}
+
+input,textarea{
+width:300px;padding:10px;margin-bottom:10px;
+background:#1a1a1a;border:1px solid #333;color:white;
 }
 
-input, textarea {
-  display:block;
-  margin-bottom:10px;
-  padding:10px;
-  width:300px;
-}
-
-button {
-  padding:10px;
-  background:black;
-  color:white;
+button{
+padding:10px;background:white;color:black;border:none;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Control Panel</h1>
+<h1>Admin Panel</h1>
 
-<h3>Hero Text</h3>
-<input id="title" placeholder="Title">
-<textarea id="desc" placeholder="Description"></textarea>
+<input id="title" placeholder="Hero title">
+<textarea id="desc" placeholder="Hero description"></textarea>
 
 <button onclick="save()">Save</button>
 
 <script>
-if(localStorage.getItem("admin") !== "true"){
-  window.location.href = "login.html";
+if(localStorage.getItem("admin")!=="true"){
+window.location="login.html";
 }
 
 function save(){
-  localStorage.setItem("title", document.getElementById("title").value);
-  localStorage.setItem("desc", document.getElementById("desc").value);
-  alert("Saved!");
+localStorage.setItem("title",title.value);
+localStorage.setItem("desc",desc.value);
+alert("Saved ✔");
 }
 </script>
 
