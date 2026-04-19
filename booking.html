@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Booking</title>
-
+  
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:sans-serif;background:#111;color:white;}
@@ -141,6 +141,15 @@ if(localStorage.getItem("admin")==="true"){
 adminBtn.style.display="inline";
 }
 
+  // USER CHECK
+if(localStorage.getItem("role")==="user"){
+  console.log("User logged in:", localStorage.getItem("currentUser"));
+}
+
+if(localStorage.getItem("role")==="admin"){
+  adminBtn.style.display="inline";
+}
+  
 // Calendar switch
 branchSelect.addEventListener("change",function(){
 if(this.value==="ulaan"){
@@ -154,6 +163,8 @@ calendarFrame.src="https://calendar.google.com/calendar/embed?src=4d105fb95fdd30
 function submitBooking(e){
 e.preventDefault();
 
+name.value = localStorage.getItem("currentUser") || "";
+  
 alert(
 "Захиалга амжилттай ✔\n\n" +
 "Нэр: "+name.value+"\n" +
