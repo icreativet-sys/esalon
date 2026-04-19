@@ -11,7 +11,7 @@ height:100vh;background:#111;color:white;font-family:sans-serif;
 
 .box{
 background:#1a1a1a;
-padding:40px;width:300px;
+padding:40px;width:320px;
 }
 
 input{
@@ -23,7 +23,7 @@ background:#111;border:1px solid #333;color:white;
 button{
 width:100%;
 padding:12px;background:white;color:black;border:none;
-cursor:pointer;
+cursor:pointer;margin-top:5px;
 }
 </style>
 </head>
@@ -31,23 +31,66 @@ cursor:pointer;
 <body>
 
 <div class="box">
-<h2>Admin Login</h2>
+<h2>Login</h2>
 
 <input id="email" placeholder="Email">
 <input id="password" type="password" placeholder="Password">
 
 <button onclick="login()">Login</button>
+<button onclick="register()">Register</button>
+
 </div>
 
 <script>
+
+// LOGIN
 function login(){
-if(email.value==="admin@esalon.mn" && password.value==="123456"){
-localStorage.setItem("admin","true");
-window.location="admin.html";
-}else{
-alert("Wrong");
+  const email = emailInput.value;
+  const pass = passwordInput.value;
+
+  // ADMIN
+  if(email==="admin@esalon.mn" && pass==="123456"){
+    localStorage.setItem("role","admin");
+    window.location="admin.html";
+    return;
+  }
+
+  // CUSTOMER
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+  const user = users.find(u=>u.email===email && u.pass===pass);
+
+  if(user){
+    localStorage.setItem("role","user");
+    localStorage.setItem("currentUser", email);
+    window.location="booking.html";
+  } else {
+    alert("Буруу мэдээлэл ❌");
+  }
 }
+
+// REGISTER
+function register(){
+  const email = emailInput.value;
+  const pass = passwordInput.value;
+
+  if(!email || !pass){
+    alert("Мэдээллээ бөглөнө үү");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users") || "[]");
+
+  users.push({email:email, pass:pass});
+
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Амжилттай бүртгэгдлээ ✔");
 }
+
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+
 </script>
 
 </body>
