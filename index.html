@@ -96,19 +96,48 @@ color:#777;
 <body>
 
 <div class="nav">
-<div class="nav-inner">
-<div class="logo">ESALON</div>
-<div>
-<a href="index.html">Home</a>
-<a href="booking.html">Booking</a>
-<a href="academy.html">Academy</a>
-<a href="shop.html">Shop</a>
-<a href="franchise.html">Franchise</a>
-<a href="login.html">Login</a>
-<a id="adminBtn" href="admin.html" style="display:none;">Admin</a>
-</div>
-</div>
+  <div class="nav-inner">
+    <div class="logo">ESALON</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="booking.html">Booking</a>
+      <a href="academy.html">Academy</a>
+      <a href="shop.html">Shop</a>
+      <a href="franchise.html">Franchise</a>
+      <a href="login.html">Login</a>
+      <a id="adminBtn" href="admin.html" style="display:none;">Admin</a>
+    </div>
+  </div>
 </div>
 
 <div class="hero">
-<h1 id="heroTitle">
+  <h1 id="heroTitle">ESALON</h1>
+  <p id="heroDesc">Premium Hair Experience</p>
+  <a href="booking.html" class="btn">Book Now</a>
+</div>
+
+<div class="section">
+  <div class="grid">
+    <div class="card" onclick="location.href='booking.html'">Booking</div>
+    <div class="card" onclick="location.href='academy.html'">Academy</div>
+    <div class="card" onclick="location.href='shop.html'">Shop</div>
+    <div class="card" onclick="location.href='franchise.html'">Franchise</div>
+  </div>
+</div>
+
+<div class="footer">© ESALON 2026</div>
+
+<script>
+if (localStorage.getItem("admin") === "true") {
+  document.getElementById("adminBtn").style.display = "inline";
+}
+
+const heroTitleEl = document.getElementById("heroTitle");
+const heroDescEl  = document.getElementById("heroDesc");
+
+heroTitleEl.innerText = localStorage.getItem("title") || "ESALON";
+heroDescEl.innerText  = localStorage.getItem("desc")  || "Premium Hair Experience";
+</script>
+
+</body>
+</html>
