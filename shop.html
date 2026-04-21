@@ -47,11 +47,9 @@ footer{text-align:center;padding:30px;color:#555;border-top:1px solid #222;margi
     </div>
   </div>
 </div>
-
 <div class="hero">
   <h1>ESALON Shop</h1>
 </div>
-
 <div class="container">
   <div class="filters">
     <button class="filter-btn active" onclick="filter('all',this)">Бүгд</button>
@@ -60,81 +58,46 @@ footer{text-align:center;padding:30px;color:#555;border-top:1px solid #222;margi
     <button class="filter-btn" onclick="filter('styling',this)">Засалт</button>
     <button class="filter-btn" onclick="filter('tools',this)">Хэрэгсэл</button>
   </div>
-
   <div class="grid" id="productGrid">
     <div class="product-card" data-cat="shampoo">
       <div class="product-img"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300" alt="Shampoo"><span class="badge">NEW</span></div>
-      <div class="product-body"><h3>Moisture Shampoo</h3><p class="brand">Kerastase</p><p class="price">₮ 45,000</p><button class="add-btn" onclick="addCart('Moisture Shampoo')">Сагсанд нэмэх</button></div>
+      <div class="product-body"><h3>Moisture Shampoo</h3><p class="brand">Kerastase</p><p class="price">45,000</p><button class="add-btn" onclick="addCart('Moisture Shampoo')">Сагсанд нэмэх</button></div>
     </div>
     <div class="product-card" data-cat="shampoo">
       <div class="product-img"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=300" alt="Shampoo"></div>
-      <div class="product-body"><h3>Repair Shampoo</h3><p class="brand">L'Oreal</p><p class="price">₮ 35,000</p><button class="add-btn" onclick="addCart('Repair Shampoo')">Сагсанд нэмэх</button></div>
+      <div class="product-body"><h3>Repair Shampoo</h3><p class="brand">L'Oreal</p><p class="price">35,000</p><button class="add-btn" onclick="addCart('Repair Shampoo')">Сагсанд нэмэх</button></div>
     </div>
     <div class="product-card" data-cat="treatment">
       <div class="product-img"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=300" alt="Mask"><span class="badge">SALE</span></div>
-      <div class="product-body"><h3>Deep Mask</h3><p class="brand">Wella</p><p class="price">₮ 55,000</p><button class="add-btn" onclick="addCart('Deep Mask')">Сагсанд нэмэх</button></div>
+      <div class="product-body"><h3>Deep Mask</h3><p class="brand">Wella</p><p class="price">55,000</p><button class="add-btn" onclick="addCart('Deep Mask')">Сагсанд нэмэх</button></div>
     </div>
     <div class="product-card" data-cat="treatment">
       <div class="product-img"><img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=300" alt="Serum"></div>
-      <div class="product-body"><h3>Repair Serum</h3><p class="brand">Olaplex</p><p class="price">₮ 75,000</p><button class="add-btn" onclick="addCart('Repair Serum')">Сагсанд нэмэх</button></div>
+      <div class="product-body"><h3>Repair Serum</h3><p class="brand">Olaplex</p><p class="price">75,000</p><button class="add-btn" onclick="addCart('Repair Serum')">Сагсанд нэмэх</button></div>
     </div>
     <div class="product-card" data-cat="styling">
       <div class="product-img"><img src="https://images.unsplash.com/photo-1585232351009-aa36b35f0f6a?w=300" alt="Wax"></div>
-      <div class="product-body"><h3>Hair Wax</h3><p class="brand">American Crew</p><p class="price">₮ 28,000</p><button class="add-btn" onclick="addCart('Hair Wax')">Сагсанд нэмэх</button></div>
+      <div class="product-body"><h3>Hair Wax</h3><p class="brand">American Crew</p><p class="price">28,000</p><button class="add-btn" onclick="addCart('Hair Wax')">Сагсанд нэмэх</button></div>
     </div>
     <div class="product-card" data-cat="styling">
       <div class="product-img"><img src="https://images.unsplash.com/photo-1631390169000-7dfc81d53266?w=300" alt="Spray"></div>
-      <div class="product-body"><h3>Hold Spray</h3><p class="brand">Schwarzkopf</p><p class="price">₮ 32,000</p><button class="add-btn" onclick="addCart('Hold Spray')">Сагсанд нэмэх</button></div>
+      <div class="product-body"><h3>Hold Spray</h3><p class="brand">Schwarzkopf</p><p class="price">32,000</p><button class="add-btn" onclick="addCart('Hold Spray')">Сагсанд нэмэх</button></div>
     </div>
     <div class="product-card" data-cat="tools">
       <div class="product-img"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=300" alt="Brush"></div>
-      <div class="product-body"><h3>Pro Brush Set</h3><p class="brand">ESALON</p><p class="price">₮ 65,000</p><button class="add-btn" onclick="addCart('Pro Brush Set')">Сагсанд нэмэх</button></div>
+      <div class="product-body"><h3>Pro Brush Set</h3><p class="brand">ESALON</p><p class="price">65,000</p><button class="add-btn" onclick="addCart('Pro Brush Set')">Сагсанд нэмэх</button></div>
     </div>
     <div class="product-card" data-cat="tools">
       <div class="product-img"><img src="https://images.unsplash.com/photo-1607006344380-b6775a0824a7?w=300" alt="Scissors"></div>
-      <div class="product-body"><h3>Professional Scissors</h3><p class="brand">Jaguar</p><p class="price">₮ 120,000</p><button class="add-btn" onclick="addCart('Professional Scissors')">Сагсанд нэмэх</button></div>
+      <div class="product-body"><h3>Professional Scissors</h3><p class="brand">Jaguar</p><p class="price">120,000</p><button class="add-btn" onclick="addCart('Professional Scissors')">Сагсанд нэмэх</button></div>
     </div>
   </div>
 </div>
-
-<div class="cart-notice" id="cartNotice">Сагсанд нэмэгдлээ ✔</div>
-
+<div class="cart-notice" id="cartNotice">Сагсанд нэмэгдлээ</div>
 <footer>© ESALON Shop 2026</footer>
-
 <script>
-function filter(cat, btn){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.product-card').forEach(card=>{
-    card.style.display = (cat==='all' || card.dataset.cat===cat) ? '' : 'none';
-  });
-}
-function addCart(name){
-  var cart = JSON.parse(localStorage.getItem('cart')||'[]');
-  cart.push({name:name, time:new Date().toISOString()});
-  localStorage.setItem('cart', JSON.stringify(cart));
-  var notice = document.getElementById('cartNotice');
-  notice.style.display='block';
-  setTimeout(function(){notice.style.display='none';}, 2000);
-}
+function filter(cat,btn){document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');document.querySelectorAll('.product-card').forEach(function(card){card.style.display=(cat==='all'||card.dataset.cat===cat)?'':'none';});}
+function addCart(name){var cart=JSON.parse(localStorage.getItem('cart')||'[]');cart.push({name:name,time:new Date().toISOString()});localStorage.setItem('cart',JSON.stringify(cart));var notice=document.getElementById('cartNotice');notice.style.display='block';setTimeout(function(){notice.style.display='none';},2000);}
 </script>
-</body>
-</html><!DOCTYPE html>
-<html>
-<head>
-<title>Page</title>
-
-<style>
-body{background:#111;color:white;font-family:sans-serif;text-align:center;padding:100px;}
-a{color:white;}
-</style>
-</head>
-
-<body>
-
-<a href="index.html">← Home</a>
-
-<h1>Coming Soon</h1>
-
 </body>
 </html>
