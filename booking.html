@@ -65,7 +65,7 @@ select option{background:#1e1e1e;}
 .service-list li:last-child{border-bottom:none;}
 .service-list .price{color:#aaa;}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s;}
-.modal-overlay.show{opacity:1;pointer-events:all;}
+.modal-overlay.show{opacity:1;pointer-events:auto;}
 .modal{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:36px 32px;max-width:400px;width:90%;text-align:center;transform:scale(0.9);transition:transform 0.25s;}
 .modal-overlay.show .modal{transform:scale(1);}
 .modal-icon{font-size:48px;margin-bottom:16px;}
@@ -206,7 +206,7 @@ select option{background:#1e1e1e;}
     <p>Таны цаг амжилттай захиалагдлаа. Дараах мэдээллийг хадгалаарай.</p>
     <div class="modal-detail" id="modalDetail"></div>
     <p style="font-size:12px;color:#555;margin-top:8px;">Лавлах дугаар: 7700-0000</p>
-    <button class="modal-close-btn" onclick="closeModal()">Хаах</button>
+    <button class="modal-close-btn" id="modalCloseBtn">Хаах</button>
   </div>
 </div>
 
@@ -242,7 +242,15 @@ function selectBranch(branch, el) {
   selectedDate = null;
   selectedTime = null;
   updateSubmitBtn();
-  renderCalendar();
+  document.getElementById('modalCloseBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  closeModal();
+});
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if(e.target === this) closeModal();
+});
+
+renderCalendar();
   renderSlots();
 }
 
