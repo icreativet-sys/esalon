@@ -1,97 +1,164 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Login</title>
+  <head>
+    <title>Login - ESALON</title>
+  <meta charset="UTF-8">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      display:flex;justify-content:center;align-items:center;
+      min-height:100vh;background:#111;color:white;font-family:-apple-system,sans-serif;
+    }
+    .box{
+      background:#1a1a1a;
+      padding:40px;width:360px;
+      border:1px solid #333;
+    }
+    .box h2{margin-bottom:25px;font-size:24px;}
+    .tabs{display:flex;margin-bottom:25px;border-bottom:1px solid #333;}
+    .tab{
+      flex:1;padding:10px;text-align:center;cursor:pointer;
+      color:#777;background:none;border:none;font-size:14px;
+      border-bottom:2px solid transparent;transition:0.3s;
+    }
+    .tab.active{color:white;border-bottom:2px solid white;}
+    label{display:block;margin-bottom:5px;color:#aaa;font-size:13px;}
+    input{
+      width:100%;
+      padding:12px;margin-bottom:15px;
+      background:#111;border:1px solid #333;color:white;
+      font-size:14px;outline:none;transition:0.3s;
+    }
+    input:focus{border-color:#fff;}
+    button.main-btn{
+      width:100%;
+      padding:13px;background:white;color:black;border:none;
+      cursor:pointer;font-size:15px;font-weight:600;
+      transition:0.3s;
+    }
+    button.main-btn:hover{background:#ddd;}
+    .msg{margin-top:12px;font-size:13px;text-align:center;}
+    .msg.error{color:#ff6b6b;}
+    .msg.success{color:#6bffb8;}
+    .home-link{display:block;text-align:center;margin-top:15px;color:#666;font-size:13px;text-decoration:none;}
+    .home-link:hover{color:#fff;}
+    </style>
+  </head>
+  <body>
+    <div class="box">
+        <h2>ESALON</h2>
+      <div class="tabs">
+          <button class="tab active" id="loginTab" onclick="showTab('login')">Нэвтрэх</button>button>
+          <button class="tab" id="registerTab" onclick="showTab('register')">Бүртгүүлэх</button>button>
+      </div>div>
+    
+      <div id="loginForm">
+          <label>И-мэйл</label>
+          <input id="loginEmail" type="email" placeholder="email@example.com">
+          <label>Нууц үг</label>
+          <input id="loginPass" type="password" placeholder="••••••">
+          <button class="main-btn" onclick="login()">Нэвтрэх</button>button>
+          <div id="loginMsg" class="msg"></div>div>
+      </div>div>
+    
+      <div id="registerForm" style="display:none;">
+          <label>И-мэйл</label>
+          <input id="regEmail" type="email" placeholder="email@example.com">
+          <label>Нууц үг</label>
+          <input id="regPass" type="password" placeholder="••••••">
+          <label>Нууц үг давтах</label>
+          <input id="regPass2" type="password" placeholder="••••••">
+          <button class="main-btn" onclick="register()">Бүртгүүлэх</button>button>
+          <div id="registerMsg" class="msg"></div>div>
+      </div>div>
+    
+      <a href="index.html" class="home-link">← Нүүр хуудас руу буцах</a>a>
+    </div>div>
+  
+  <script>
+    function showTab(tab){
+        document.getElementById('loginForm').style.display = tab==='login' ? 'block' : 'none';
+        document.getElementById('registerForm').style.display = tab==='register' ? 'block' : 'none';
+        document.getElementById('loginTab').classList.toggle('active', tab==='login');
+        document.getElementById('registerTab').classList.toggle('active', tab==='register');
+    }
 
-<style>
-body{
-display:flex;justify-content:center;align-items:center;
-height:100vh;background:#111;color:white;font-family:sans-serif;
-}
+    function login(){
+        const email = document.getElementById('loginEmail').value.trim();
+        const pass = document.getElementById('loginPass').value;
+        const msg = document.getElementById('loginMsg');
 
-.box{
-background:#1a1a1a;
-padding:40px;width:320px;
-}
+        if(!email || !pass){
+              msg.className='msg error';
+              msg.textContent='И-мэйл болон нууц үгээ оруулна уу';
+              return;
+        }
 
-input{
-width:100%;
-padding:12px;margin-bottom:10px;
-background:#111;border:1px solid #333;color:white;
-}
+        // ADMIN
+        if(email==='admin@esalon.mn' && pass==='123456'){
+              localStorage.setItem('role','admin');
+              localStorage.setItem('admin','true');
+              localStorage.setItem('currentUser', email);
+              window.location='admin.html';
+              return;
+        }
 
-button{
-width:100%;
-padding:12px;background:white;color:black;border:none;
-cursor:pointer;margin-top:5px;
-}
-</style>
-</head>
+        // CUSTOMER
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const user = users.find(u=>u.email===email && u.pass===pass);
 
-<body>
+        if(user){
+              localStorage.setItem('role','user');
+              localStorage.setItem('admin','false');
+              localStorage.setItem('currentUser', email);
+              window.location='booking.html';
+        } else {
+              msg.className='msg error';
+              msg.textContent='И-мэйл эсвэл нууц үг буруу байна ❌';
+        }
+    }
 
-<div class="box">
-<h2>Login</h2>
+    function register(){
+        const email = document.getElementById('regEmail').value.trim();
+        const pass = document.getElementById('regPass').value;
+        const pass2 = document.getElementById('regPass2').value;
+        const msg = document.getElementById('registerMsg');
 
-<input id="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
+        if(!email || !pass){
+              msg.className='msg error';
+              msg.textContent='Бүх талбарыг бөглөнө үү';
+              return;
+        }
+        if(pass !== pass2){
+              msg.className='msg error';
+              msg.textContent='Нууц үг таарахгүй байна';
+              return;
+        }
+        if(pass.length < 6){
+              msg.className='msg error';
+              msg.textContent='Нууц үг дор хаяж 6 тэмдэгт байх ёстой';
+              return;
+        }
 
-<button onclick="login()">Login</button>
-<button onclick="register()">Register</button>
+        let users = JSON.parse(localStorage.getItem('users') || '[]');
+        if(users.find(u=>u.email===email)){
+              msg.className='msg error';
+              msg.textContent='Энэ и-мэйл бүртгэлтэй байна';
+              return;
+        }
 
-</div>
+        users.push({email:email, pass:pass, name:email.split('@')[0]});
+        localStorage.setItem('users', JSON.stringify(users));
 
-<script>
-
-// LOGIN
-function login(){
-  const email = emailInput.value;
-  const pass = passwordInput.value;
-
-  // ADMIN
-  if(email==="admin@esalon.mn" && pass==="123456"){
-    localStorage.setItem("role","admin");
-    window.location="admin.html";
-    return;
-  }
-
-  // CUSTOMER
-  const users = JSON.parse(localStorage.getItem("users") || "[]");
-
-  const user = users.find(u=>u.email===email && u.pass===pass);
-
-  if(user){
-    localStorage.setItem("role","user");
-    localStorage.setItem("currentUser", email);
-    window.location="booking.html";
-  } else {
-    alert("Буруу мэдээлэл ❌");
-  }
-}
-
-// REGISTER
-function register(){
-  const email = emailInput.value;
-  const pass = passwordInput.value;
-
-  if(!email || !pass){
-    alert("Мэдээллээ бөглөнө үү");
-    return;
-  }
-
-  let users = JSON.parse(localStorage.getItem("users") || "[]");
-
-  users.push({email:email, pass:pass});
-
-  localStorage.setItem("users", JSON.stringify(users));
-
-  alert("Амжилттай бүртгэгдлээ ✔");
-}
-
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-
-</script>
-
-</body>
+        msg.className='msg success';
+        msg.textContent='Амжилттай бүртгэгдлээ ✔ Нэвтэрч орно уу';
+        setTimeout(()=>showTab('login'), 1500);
+    }
+  </script>
+  </body>
+</html>
+  </script></label></label></h2>
+  </body>
+  </style></title>
+  </head>
 </html>
