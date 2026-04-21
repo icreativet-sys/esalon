@@ -199,14 +199,14 @@ select option{background:#1e1e1e;}
   </div>
 </div>
 
-<div class="modal-overlay" id="modalOverlay">
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <div class="modal-icon">✅</div>
     <h3>Захиалга баталгаажлаа!</h3>
     <p>Таны цаг амжилттай захиалагдлаа. Дараах мэдээллийг хадгалаарай.</p>
     <div class="modal-detail" id="modalDetail"></div>
     <p style="font-size:12px;color:#555;margin-top:8px;">Лавлах дугаар: 7700-0000</p>
-    <button class="modal-close-btn" id="modalCloseBtn">Хаах</button>
+    <button class="modal-close-btn" id="modalCloseBtn" onclick="closeModal()">Хаах</button>
   </div>
 </div>
 
