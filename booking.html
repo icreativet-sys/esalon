@@ -33,13 +33,13 @@
   <body>
     <div class="nav">
         <div class="nav-inner">
-              <div class="logo">ESALON</div>div>
+              <div class="logo">ESALON</div>
               <div>
-                      <a href="index.html">Нүүр</a>a>
-                      <span class="nav-user" id="navUser"></span>span>
-                      <a href="login.html" id="loginLink">Нэвтрэх</a>a>
-                      <a href="admin.html" id="adminBtn" style="display:none">Admin</a>a>
-                      <a href="#" id="logoutLink" style="display:none" onclick="logout()">Гарах</a>a>
+                      <a href="index.html">Нүүр</a>
+                      <span class="nav-user" id="navUser"></span>
+                      <a href="login.html" id="loginLink">Нэвтрэх</a>
+                      <a href="admin.html" id="adminBtn" style="display:none">Admin</a>
+                      <a href="#" id="logoutLink" style="display:none" onclick="logout()">Гарах</a>
               </div>
         </div>
     </div>
@@ -49,10 +49,10 @@
               <h2>Цаг захиалах</h2>
             <div class="info-label">Салбар сонгох</div>
             <select id="branchSelect" onchange="updateCalendar()">
-                  <option value="ulaan">Улсын их дэлгүүр</option>option>
-                  <option value="zaisan">Зайсан</option>option>
-            </select>select>
-            <iframe id="calendarFrame" src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com"></iframe>iframe>
+                  <option value="ulaan">Улсын их дэлгүүр</option>
+                  <option value="zaisan">Зайсан</option>
+            </select>
+            <iframe id="calendarFrame" src="https://calendar.google.com/calendar/embed?src=a8b02f94bd18a3bd68059b059e52f077c0b81a6b7c9d925128b1d2bb97d434b8@group.calendar.google.com"></iframe>
             <hr class="divider">
             <h3>Мэдээлэл оруулах</h3>
             <form id="bookingForm" onsubmit="submitBooking(event)">
@@ -67,14 +67,14 @@
                           <option>Treatment - Эмчилгээ</option>
                           <option>Perm - Долгион</option>
                           <option>Styling - Засалт</option>
-                  </select>select>
+                  </select>
                   <div class="info-label">Цаг огноо</div>
                   <input id="timeInput" type="datetime-local" required>
-                  <button type="submit">Захиалах</button>button>
-            </form>form>
+                  <button type="submit">Захиалах</button>
+            </form>
             <div class="success-box" id="successBox">
                   <h3>Захиалга амжилттай!</h3>
-                  <p id="successDetails"></p>p>
+                  <p id="successDetails"></p>
             </div>
         </div>
     </div>
