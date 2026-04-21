@@ -242,12 +242,14 @@ function selectBranch(branch, el) {
   selectedDate = null;
   selectedTime = null;
   updateSubmitBtn();
+  window.addEventListener('DOMContentLoaded', function() {
   document.getElementById('modalCloseBtn').addEventListener('click', function(e) {
-  e.stopPropagation();
-  closeModal();
-});
-document.getElementById('modalOverlay').addEventListener('click', function(e) {
-  if(e.target === this) closeModal();
+    e.stopPropagation();
+    closeModal();
+  });
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if(e.target === this) closeModal();
+  });
 });
 
 renderCalendar();
