@@ -1,6 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>Academy - ESALON</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,sans-serif;background:#0f0f0f;color:white;}
+.nav{position:fixed;top:0;width:100%;background:rgba(0,0,0,0.9);backdrop-filter:blur(10px);z-index:100;border-bottom:1px solid #333;}
+.nav-inner{max-width:1200px;margin:auto;height:60px;display:flex;justify-content:space-between;align-items:center;padding:0 20px;}
+.logo{font-weight:bold;font-size:18px;text-decoration:none;color:white;}
+.nav a{color:#ccc;margin-left:20px;text-decoration:none;font-size:14px;transition:0.3s;}
+.nav a:hover{color:white;}
+.hero{height:50vh;background:url('https://images.unsplash.com/photo-1562322140-8baeececf3df') center/cover;display:flex;align-items:center;justify-content:center;position:relative;margin-top:60px;}
+.hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.6);}
+.hero-content{position:relative;z-index:2;text-align:center;}
+.hero-content h1{font-size:48px;margin-bottom:15px;}
+.hero-content p{color:#ccc;font-size:18px;}
+.container{max-width:1100px;margin:60px auto;padding:0 20px;}
+h2{font-size:28px;margin-bottom:10px;}
+.subtitle{color:#888;margin-bottom:40px;}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-bottom:60px;}
+.course-card{background:#1a1a1a;border:1px solid #333;overflow:hidden;transition:0.3s;}
+.course-card:hover{transform:translateY(-5px);border-color:#555;}
+.course-img{height:200px;background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover;}
+.course-body{padding:20px;}
+.course-body h3{font-size:18px;margin-bottom:8px;}
+.course-body .desc{color:#888;font-size:14px;margin-bottom:15px;line-height:1.5;}
+.course-body .meta{display:flex;gap:15px;font-size:13px;color:#666;margin-bottom:15px;}
+.course-body .price{font-size:20px;font-weight:700;margin-bottom:15px;}
+.btn{display:inline-block;padding:10px 20px;background:white;color:black;text-decoration:none;font-size:14px;font-weight:600;transition:0.3s;}
+.btn:hover{background:#ddd;}
+.features{background:#1a1a1a;border:1px solid #333;padding:50px;margin-bottom:60px;text-align:center;}
+.features h2{margin-bottom:40px;}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
+.feat-item{text-align:center;}
+.feat-icon{font-size:36px;margin-bottom:15px;}
+.feat-item h4{margin-bottom:8px;}
+.feat-item p{color:#888;font-size:14px;}
+.cta{text-align:center;padding:60px 20px;background:#1a1a1a;border:1px solid #333;}
+.cta h2{font-size:32px;margin-bottom:15px;}
+.cta p{color:#888;margin-bottom:25px;}
+footer{text-align:center;padding:30px;color:#555;border-top:1px solid #222;}
+</style>
+</head>
+<body>
+<div class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">ESALON</a>
+    <div>
+      <a href="index.html">Нүүр</a>
+      <a href="booking.html">Захиалах</a>
+      <a href="academy.html">Academy</a>
+      <a href="shop.html">Shop</a>
+      <a href="franchise.html">Franchise</a>
+      <a href="login.html">Нэвтрэх</a>
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>ESALON Academy</h1>
+    <p>Мэргэжлийн үсчин болох замдаа эхлэл тавь</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div style="margin-bottom:50px;">
+    <h2>Сургалтын хөтөлбөрүүд</h2>
+    <p class="subtitle">Олон улсын стандартын дагуу мэргэшсэн багш нарын удирдлага дор суралцаарай</p>
+    <div class="grid">
+      <div class="course-card">
+        <div class="course-img" style="background-image:url('https://images.unsplash.com/photo-1560066984-138dadb4c035');"></div>
+        <div class="course-body">
+          <h3>Үндсэн сургалт</h3>
+          <p class="desc">Үсчний үндсэн ур чадвар, хэрэгслийн хэрэглээ, арьс гарны гигиен</p>
+          <div class="meta"><span>⏱ 3 сар</span><span>👥 15 суралцагч</span></div>
+          <div class="price">₮ 450,000</div>
+          <a href="booking.html" class="btn">Бүртгүүлэх</a>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-img" style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e');"></div>
+        <div class="course-body">
+          <h3>Дэвшилтэт сургалт</h3>
+          <p class="desc">Орчин үеийн засалт, будалтын техник, брэнд бүтээх ур чадвар</p>
+          <div class="meta"><span>⏱ 6 сар</span><span>👥 10 суралцагч</span></div>
+          <div class="price">₮ 850,000</div>
+          <a href="booking.html" class="btn">Бүртгүүлэх</a>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-img" style="background-image:url('https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6');"></div>
+        <div class="course-body">
+          <h3>Мастер сургалт</h3>
+          <p class="desc">Олон улсын техник, бизнес удирдлага, салоны нээлтийн бэлтгэл</p>
+          <div class="meta"><span>⏱ 1 жил</span><span>👥 8 суралцагч</span></div>
+          <div class="price">₮ 1,500,000</div>
+          <a href="booking.html" class="btn">Бүртгүүлэх</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <h2>Яагаад ESALON Academy?</h2>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="feat-icon">🎓</div><h4>Мэргэшсэн багш</h4><p>10+ жилийн туршлагатай мэргэжлийн багш нар</p></div>
+      <div class="feat-item"><div class="feat-icon">✂️</div><h4>Практик дадлага</h4><p>70% практик, 30% онол - бодит туршлага</p></div>
+      <div class="feat-item"><div class="feat-icon">📜</div><h4>Гэрчилгээ</h4><p>Олон улсад хүлээн зөвшөөрөгдсөн гэрчилгээ</p></div>
+      <div class="feat-item"><div class="feat-icon">💼</div><h4>Ажил олгох</h4><p>Төгсөгчдийн 90%+ ажилд зуучилдаг</p></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h2>Суралцахад бэлэн үү?</h2>
+    <p>Мэргэжлийн үсчний карьераа ESALON-той хамт эхлүүл</p>
+    <a href="booking.html" class="btn">Одоо бүртгүүлэх</a>
+  </div>
+</div>
+
+<footer>© ESALON Academy 2026</footer>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
 <title>Page</title>
 
 <style>
