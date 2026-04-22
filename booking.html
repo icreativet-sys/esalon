@@ -12,7 +12,7 @@ body{font-family:-apple-system,sans-serif;background:#111;color:white;}
 .logo{font-weight:bold;font-size:18px;color:white;text-decoration:none;}
 .nav a{color:#ccc;margin-left:20px;text-decoration:none;font-size:14px;transition:0.3s;}
 .nav a:hover{color:white;}
-.page{margin-top:60px;display:grid;grid-template-columns:1fr 380px;min-height:calc(100vh - 60px);}
+.page{margin-top:60px;display:grid;grid-template-columns:1fr 380px;min-height:calc(100vh - 60px);}h
 .left-bg{background:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') center/cover;position:relative;}
 .left-bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.55);}
 .booking-panel{background:#161616;overflow-y:auto;padding:30px 28px;}
@@ -242,18 +242,9 @@ function selectBranch(branch, el) {
   selectedDate = null;
   selectedTime = null;
   updateSubmitBtn();
-  window.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('modalCloseBtn').addEventListener('click', function(e) {
-    e.stopPropagation();
-    closeModal();
-  });
-  document.getElementById('modalOverlay').addEventListener('click', function(e) {
-    if(e.target === this) closeModal();
-  });
-});
+    renderCalendar();
+    renderSlots();
 
-renderCalendar();
-  renderSlots();
 }
 
 function renderCalendar() {
@@ -407,7 +398,7 @@ function submitBooking(e) {
     alert('Нэр болон утасны дугаараа оруулна уу!');
     return;
   }
-  if(!/^d{8}$/.test(phone)) {
+  if(!/^\d{8}$/.test(phone)) {
     alert('Утасны дугаар 8 оронтой байх ёстой!');
     return;
   }
