@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="mn">
 <head>
 <meta charset="UTF-8">
@@ -478,13 +478,13 @@
     <div class="nav-item" onclick="switchTab('branches', this)">
       <span class="icon">◎</span> Салбар
     </div>
-            <div class="nav-section">Систем</div>div>
+            <div class="nav-section">Систем</div>
             <div class="nav-item" onclick="switchTab('settings', this)">
-                        <span class="icon">⚙</span>span> Тохиргоо
-            </div>div>
+                        <span class="icon">⚙</span> Тохиргоо
+            </div>
             <div class="nav-item" onclick="switchTab('users', this)">
-                        <span class="icon">👥</span>span> Хэрэглэгчид
-            </div>div>
+                        <span class="icon">👥</span> Хэрэглэгчид
+            </div>
   </nav>
   <div class="sidebar-footer">
     <div class="admin-badge">
@@ -703,48 +703,48 @@
           <!-- SETTINGS TAB -->
           <div class="tab-panel" id="tab-settings">
                       <div class="section-card">
-                                    <div class="section-header"><h2>Нүүр хуудас тохиргоо</h2></div>div>
+                                    <div class="section-header"><h2>Нүүр хуудас тохиргоо</h2></div>
                                   <div class="form-group">
                                                 <label>Hero гарчиг</label>
                                                 <input id="settingTitle" type="text" placeholder="ESALON Premium...">
-                                  </div>div>
+                                  </div>
                                   <div class="form-group">
                                                 <label>Hero тайлбар</label>
                                                 <textarea id="settingDesc" rows="3" placeholder="Чиний үс, Чиний чөлөө..."></textarea>
-                                  </div>div>
+                                  </div>
                                   <button class="btn btn-primary" onclick="saveHeroSettings()">Хадгалах</button>button>
-                      </div>div>
+                      </div>
                     <div class="section-card" style="margin-top:20px">
-                                <div class="section-header"><h2>nameInput цэвэрлэх</h2></div>div>
+                                <div class="section-header"><h2>nameInput цэвэрлэх</h2></div>
                                 <p style="color:var(--text2);font-size:14px;margin-bottom:16px">Захиалгын хуудсан дахь хэрэглэгчийн нэрийн default утгыг арилгах</p>p>
                                 <button class="btn btn-ghost" onclick="clearNameInput()">nameInput арилгах</button>button>
-                    </div>div>
+                    </div>
                     <div class="section-card" style="margin-top:20px">
-                                <div class="section-header"><h2>Нууц үг өөрчлөх</h2></div>div>
+                                <div class="section-header"><h2>Нууц үг өөрчлөх</h2></div>
                                 <div class="form-group">
                                               <label>Шинэ нууц үг</label>
                                               <input id="newPass" type="password" placeholder="Шинэ нууц үг">
-                                </div>div>
+                                </div>
                                 <div class="form-group">
                                               <label>Баталгаажуулах</label>
                                               <input id="confirmPass" type="password" placeholder="Давтан оруулна уу">
-                                </div>div>
+                                </div>
                                 <button class="btn btn-primary" onclick="changePassword()">Хадгалах</button>button>
-                    </div>div>
-          </div>div>
+                    </div>
+          </div>
 
         <!-- USERS TAB -->
         <div class="tab-panel" id="tab-users">
                   <div class="section-card">
-                              <div class="section-header"><h2>Бүртгэлтэй хэрэглэгчид</h2></div>div>
+                              <div class="section-header"><h2>Бүртгэлтэй хэрэглэгчид</h2></div>
                               <div id="usersTableWrap" style="overflow-x:auto">
                                             <table class="data-table">
                                                             <thead><tr><th>#</th><th>И-мэйл</th><th>Огноо</th><th>Үйлдэл</th></tr></thead>
                                                             <tbody id="usersTableBody"></tbody>tbody>
                                             </table>table>
-                              </div>div>
-                  </div>div>
-        </div>div></th></th></tr></thead></label></label></h2>
+                              </div>
+                  </div>
+        </div></th></th></tr></thead></label></label></h2>
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
