@@ -478,6 +478,13 @@
     <div class="nav-item" onclick="switchTab('branches', this)">
       <span class="icon">◎</span> Салбар
     </div>
+            <div class="nav-section">Систем</div>div>
+            <div class="nav-item" onclick="switchTab('settings', this)">
+                        <span class="icon">⚙</span>span> Тохиргоо
+            </div>div>
+            <div class="nav-item" onclick="switchTab('users', this)">
+                        <span class="icon">👥</span>span> Хэрэглэгчид
+            </div>div>
   </nav>
   <div class="sidebar-footer">
     <div class="admin-badge">
@@ -692,6 +699,52 @@
   </div>
 </main>
 
+
+          <!-- SETTINGS TAB -->
+          <div class="tab-panel" id="tab-settings">
+                      <div class="section-card">
+                                    <div class="section-header"><h2>Нүүр хуудас тохиргоо</h2></div>div>
+                                  <div class="form-group">
+                                                <label>Hero гарчиг</label>
+                                                <input id="settingTitle" type="text" placeholder="ESALON Premium...">
+                                  </div>div>
+                                  <div class="form-group">
+                                                <label>Hero тайлбар</label>
+                                                <textarea id="settingDesc" rows="3" placeholder="Чиний үс, Чиний чөлөө..."></textarea>
+                                  </div>div>
+                                  <button class="btn btn-primary" onclick="saveHeroSettings()">Хадгалах</button>button>
+                      </div>div>
+                    <div class="section-card" style="margin-top:20px">
+                                <div class="section-header"><h2>nameInput цэвэрлэх</h2></div>div>
+                                <p style="color:var(--text2);font-size:14px;margin-bottom:16px">Захиалгын хуудсан дахь хэрэглэгчийн нэрийн default утгыг арилгах</p>p>
+                                <button class="btn btn-ghost" onclick="clearNameInput()">nameInput арилгах</button>button>
+                    </div>div>
+                    <div class="section-card" style="margin-top:20px">
+                                <div class="section-header"><h2>Нууц үг өөрчлөх</h2></div>div>
+                                <div class="form-group">
+                                              <label>Шинэ нууц үг</label>
+                                              <input id="newPass" type="password" placeholder="Шинэ нууц үг">
+                                </div>div>
+                                <div class="form-group">
+                                              <label>Баталгаажуулах</label>
+                                              <input id="confirmPass" type="password" placeholder="Давтан оруулна уу">
+                                </div>div>
+                                <button class="btn btn-primary" onclick="changePassword()">Хадгалах</button>button>
+                    </div>div>
+          </div>div>
+
+        <!-- USERS TAB -->
+        <div class="tab-panel" id="tab-users">
+                  <div class="section-card">
+                              <div class="section-header"><h2>Бүртгэлтэй хэрэглэгчид</h2></div>div>
+                              <div id="usersTableWrap" style="overflow-x:auto">
+                                            <table class="data-table">
+                                                            <thead><tr><th>#</th><th>И-мэйл</th><th>Огноо</th><th>Үйлдэл</th></tr></thead>
+                                                            <tbody id="usersTableBody"></tbody>tbody>
+                                            </table>table>
+                              </div>div>
+                  </div>div>
+        </div>div></th></th></tr></thead></label></label></h2>
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
@@ -753,11 +806,13 @@ const pageTitles = {
   services:  ['Үйлчилгээ', 'Үйлчилгээ нэмэх, засах'],
   staff:     ['Ажилтан', 'Ажилтнуудын мэдээлэл'],
   branches:  ['Салбар', 'Салбарын тохиргоо'],
+      settings: ['Тохиргоо', 'Сайтын тохиргоо'],
+      users:    ['Хэрэглэгчид', 'Хэрэглэгч удирдлага'],
 };
 function switchTab(name, el) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
+      ment.getElementById('tab-' + name).classList.add('active');
   el.classList.add('active');
   const t = pageTitles[name];
   document.getElementById('pageTitle').textContent = t[0];
@@ -768,6 +823,8 @@ function switchTab(name, el) {
   if (name === 'staff') renderStaff();
   if (name === 'branches') renderBranches();
 }
+      if (name === 'settings') renderSettings();
+      if (name === 'users') renderUsers();
 
 // ─── DASHBOARD ───
 function renderDashboard() {
@@ -1101,7 +1158,61 @@ function logout() {
 }
 
 // ─── INIT ───
-renderDashboard();
+
+  // — SETTINGS —
+  function renderSettings() {
+      document.getElementById('settingTitle').value = localStorage.getItem('title') || '';
+      document.getElementById('settingDesc').value = localStorage.getItem('desc') || '';
+  }
+  function saveHeroSettings() {
+      localStorage.setItem('title', document.getElementById('settingTitle').value);
+      localStorage.setItem('desc', document.getElementById('settingDesc').value);
+      toast('Hero тохиргоо хадгалагдлаа', 'success');
+  }
+  function clearNameInput() {
+      localStorage.removeItem('nameInput');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('name');
+      toast('nameInput амжилттай арилгагдлаа', 'success');
+  }
+  function changePassword() {
+      const np = document.getElementById('newPass').value;
+      const cp = document.getElementById('confirmPass').value;
+      if (!np) { toast('Нууц үг хоосон байна', 'error'); return; }
+      if (np !== cp) { toast('Нууц үг таарахгүй байна', 'error'); return; }
+      localStorage.setItem('adminPass', np);
+      document.getElementById('newPass').value = '';
+      document.getElementById('confirmPass').value = '';
+      toast('Нууц үг амжилттай өөрчлөгдлөө', 'success');
+  }
+  
+  // — USERS —
+  function renderUsers() {
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const tbody = document.getElementById('usersTableBody');
+      if (!users.length) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text3);padding:40px">Хэрэглэгч байхгүй байна</td></tr>';
+            return;
+      }
+      tbody.innerHTML = users.map((u, i) => `
+          <tr>
+                <td>${i+1}</td>
+                      <td>${u.email || '-'}</td>
+                            <td>${u.date ? new Date(u.date).toLocaleDateString('mn-MN') : '-'}</td>
+                                  <td><button class="btn-icon btn-danger" onclick="deleteUser(${i})" title="Устгах">×</button></td>
+                                      </tr>
+                                        `).join('');
+  }
+  function deleteUser(i) {
+      if (!confirm('Хэрэглэгчийг устгах уу?')) return;
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      users.splice(i, 1);
+      localStorage.setItem('users', JSON.stringify(users));
+      renderUsers();
+      toast('Хэрэглэгч устгагдлаа', 'success');
+  }
+  
+  renderDashboard();
 </script>
 </body>
 </html>
