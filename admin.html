@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
 <meta charset="UTF-8">
@@ -794,9 +794,9 @@ function getBookings() {
 
 // ─── DATE ───
 const now = new Date();
-document.getElementById('dateBadge').textContent =
+docudocudocument.getElementById('dateBadge').textContent =
   now.toLocaleDateString('mn-MN', { year:'numeric', month:'2-digit', day:'2-digit', weekday:'short' });
-document.getElementById('statTodayDate').textContent =
+docudocudocument.getElementById('statTodayDate').textContent =
   now.toLocaleDateString('mn-MN', { month:'long', day:'numeric' });
 
 // ─── NAVIGATION ───
@@ -812,11 +812,11 @@ const pageTitles = {
 function switchTab(name, el) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      ment.getElementById('tab-' + name).classList.add('active');
+      docudocument.getElementById('tab-' + name).classList.add('active');
   el.classList.add('active');
   const t = pageTitles[name];
-  document.getElementById('pageTitle').textContent = t[0];
-  document.getElementById('pageSub').textContent = t[1];
+  docudocudocument.getElementById('pageTitle').textContent = t[0];
+  docudocudocument.getElementById('pageSub').textContent = t[1];
   if (name === 'dashboard') renderDashboard();
   if (name === 'bookings') renderBookings();
   if (name === 'services') renderServices();
@@ -832,13 +832,13 @@ function renderDashboard() {
   const today = now.toISOString().slice(0,10);
   const todayB = bookings.filter(b => (b.date||b.time||'').startsWith(today));
   const uniquePhones = [...new Set(bookings.map(b => b.phone).filter(Boolean))];
-  document.getElementById('statTotal').textContent = bookings.length;
-  document.getElementById('statToday').textContent = todayB.length;
-  document.getElementById('statUsers').textContent = uniquePhones.length;
-  document.getElementById('statServices').textContent = getServices().length;
+  docudocudocument.getElementById('statTotal').textContent = bookings.length;
+  docudocudocument.getElementById('statToday').textContent = todayB.length;
+  docudocudocument.getElementById('statUsers').textContent = uniquePhones.length;
+  docudocudocument.getElementById('statServices').textContent = getServices().length;
 
   const recent = [...bookings].reverse().slice(0, 5);
-  const el = document.getElementById('recentList');
+  const el = docudocudocument.getElementById('recentList');
   if (!recent.length) {
     el.innerHTML = '<div class="empty-state"><div class="empty-icon">📭</div>Захиалга байхгүй байна</div>';
     return;
@@ -865,15 +865,15 @@ function statusBadge(s) {
 
 // ─── BOOKINGS ───
 function renderBookings() {
-  const q = (document.getElementById('searchInput').value || '').toLowerCase();
-  const branch = document.getElementById('branchFilter').value;
-  const status = document.getElementById('statusFilter').value;
+  const q = (docudocudocument.getElementById('searchInput').value || '').toLowerCase();
+  const branch = docudocudocument.getElementById('branchFilter').value;
+  const status = docudocudocument.getElementById('statusFilter').value;
   let bookings = getBookings();
   if (q) bookings = bookings.filter(b => (b.name||'').toLowerCase().includes(q) || (b.phone||'').includes(q));
   if (branch) bookings = bookings.filter(b => b.branch === branch);
   if (status) bookings = bookings.filter(b => (b.status||'pending') === status);
 
-  const tbody = document.getElementById('bookingsBody');
+  const tbody = docudocudocument.getElementById('bookingsBody');
   if (!bookings.length) {
     tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">📭</div>Захиалга олдсонгүй</div></td></tr>';
     return;
@@ -924,16 +924,16 @@ function deleteBooking(idx) {
 }
 
 function clearFilters() {
-  document.getElementById('searchInput').value = '';
-  document.getElementById('branchFilter').value = '';
-  document.getElementById('statusFilter').value = '';
+  docudocudocument.getElementById('searchInput').value = '';
+  docudocudocument.getElementById('branchFilter').value = '';
+  docudocudocument.getElementById('statusFilter').value = '';
   renderBookings();
 }
 
 // ─── SERVICES ───
 function renderServices() {
   const services = getServices();
-  const tbody = document.getElementById('servicesBody');
+  const tbody = docudocudocument.getElementById('servicesBody');
   tbody.innerHTML = services.map((s, i) => `
     <tr>
       <td class="num">${i+1}</td>
@@ -950,10 +950,10 @@ function renderServices() {
 }
 
 function addService() {
-  const name = document.getElementById('svcName').value.trim();
-  const price = document.getElementById('svcPrice').value;
-  const duration = document.getElementById('svcDuration').value;
-  const desc = document.getElementById('svcDesc').value.trim();
+  const name = docudocudocument.getElementById('svcName').value.trim();
+  const price = docudocudocument.getElementById('svcPrice').value;
+  const duration = docudocudocument.getElementById('svcDuration').value;
+  const desc = docudocudocument.getElementById('svcDesc').value.trim();
   if (!name || !price) { toast('Нэр болон үнэ заавал шаардлагатай', 'error'); return; }
   const services = getServices();
   services.push({ id: 's' + Date.now(), name, price: Number(price), duration: Number(duration), desc });
@@ -975,15 +975,15 @@ let editTarget = null;
 function editService(i) {
   const s = getServices()[i];
   editTarget = { type: 'service', idx: i };
-  document.getElementById('editModalTitle').textContent = 'Үйлчилгээ засах';
-  document.getElementById('editModalBody').innerHTML = `
+  docudocudocument.getElementById('editModalTitle').textContent = 'Үйлчилгээ засах';
+  docudocudocument.getElementById('editModalBody').innerHTML = `
     <div class="form-grid-2" style="gap:12px">
       <div class="form-group"><label>Нэр</label><input id="em_name" value="${s.name}"></div>
       <div class="form-group"><label>Үнэ (₮)</label><input id="em_price" type="number" value="${s.price}"></div>
       <div class="form-group"><label>Хугацаа (мин)</label><input id="em_duration" type="number" value="${s.duration}"></div>
       <div class="form-group"><label>Тайлбар</label><input id="em_desc" value="${s.desc||''}"></div>
     </div>`;
-  document.getElementById('editModal').classList.add('open');
+  docudocudocument.getElementById('editModal').classList.add('open');
 }
 
 function saveEdit() {
@@ -992,10 +992,10 @@ function saveEdit() {
     const s = getServices();
     s[editTarget.idx] = {
       ...s[editTarget.idx],
-      name: document.getElementById('em_name').value,
-      price: Number(document.getElementById('em_price').value),
-      duration: Number(document.getElementById('em_duration').value),
-      desc: document.getElementById('em_desc').value,
+      name: docudocudocument.getElementById('em_name').value,
+      price: Number(docudocudocument.getElementById('em_price').value),
+      duration: Number(docudocudocument.getElementById('em_duration').value),
+      desc: docudocudocument.getElementById('em_desc').value,
     };
     setData('esalon_services', s);
     renderServices();
@@ -1003,10 +1003,10 @@ function saveEdit() {
     const st = getStaff();
     st[editTarget.idx] = {
       ...st[editTarget.idx],
-      name: document.getElementById('em_name').value,
-      role: document.getElementById('em_role').value,
-      branch: document.getElementById('em_branch').value,
-      phone: document.getElementById('em_phone').value,
+      name: docudocudocument.getElementById('em_name').value,
+      role: docudocudocument.getElementById('em_role').value,
+      branch: docudocudocument.getElementById('em_branch').value,
+      phone: docudocudocument.getElementById('em_phone').value,
     };
     setData('esalon_staff', st);
     renderStaff();
@@ -1014,10 +1014,10 @@ function saveEdit() {
     const br = getBranches();
     br[editTarget.idx] = {
       ...br[editTarget.idx],
-      name: document.getElementById('em_bname').value,
-      address: document.getElementById('em_baddr').value,
-      phone: document.getElementById('em_bphone').value,
-      hours: document.getElementById('em_bhours').value,
+      name: docudocudocument.getElementById('em_bname').value,
+      address: docudocudocument.getElementById('em_baddr').value,
+      phone: docudocudocument.getElementById('em_bphone').value,
+      hours: docudocudocument.getElementById('em_bhours').value,
     };
     setData('esalon_branches', br);
     renderBranches();
@@ -1027,18 +1027,18 @@ function saveEdit() {
 }
 
 function closeModal() {
-  document.getElementById('editModal').classList.remove('open');
+  docudocudocument.getElementById('editModal').classList.remove('open');
   editTarget = null;
 }
 
 function clearServiceForm() {
-  ['svcName','svcPrice','svcDuration','svcDesc'].forEach(id => document.getElementById(id).value = '');
+  ['svcName','svcPrice','svcDuration','svcDesc'].forEach(id => docudocudocument.getElementById(id).value = '');
 }
 
 // ─── STAFF ───
 function renderStaff() {
   const staff = getStaff();
-  const tbody = document.getElementById('staffBody');
+  const tbody = docudocudocument.getElementById('staffBody');
   if (!staff.length) {
     tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">👤</div>Ажилтан байхгүй</div></td></tr>';
     return;
@@ -1059,15 +1059,15 @@ function renderStaff() {
 }
 
 function addStaff() {
-  const name = document.getElementById('staffName').value.trim();
+  const name = docudocudocument.getElementById('staffName').value.trim();
   if (!name) { toast('Нэр заавал шаардлагатай', 'error'); return; }
   const staff = getStaff();
   staff.push({
     id: 'st' + Date.now(),
     name,
-    role: document.getElementById('staffRole').value.trim(),
-    branch: document.getElementById('staffBranch').value,
-    phone: document.getElementById('staffPhone').value.trim(),
+    role: docudocudocument.getElementById('staffRole').value.trim(),
+    branch: docudocudocument.getElementById('staffBranch').value,
+    phone: docudocudocument.getElementById('staffPhone').value.trim(),
   });
   setData('esalon_staff', staff);
   renderStaff();
@@ -1086,8 +1086,8 @@ function deleteStaff(i) {
 function editStaff(i) {
   const s = getStaff()[i];
   editTarget = { type: 'staff', idx: i };
-  document.getElementById('editModalTitle').textContent = 'Ажилтан засах';
-  document.getElementById('editModalBody').innerHTML = `
+  docudocudocument.getElementById('editModalTitle').textContent = 'Ажилтан засах';
+  docudocudocument.getElementById('editModalBody').innerHTML = `
     <div style="display:flex;flex-direction:column;gap:12px">
       <div class="form-group"><label>Нэр</label><input id="em_name" value="${s.name}"></div>
       <div class="form-group"><label>Мэргэжил</label><input id="em_role" value="${s.role||''}"></div>
@@ -1099,17 +1099,17 @@ function editStaff(i) {
         </select>
       </div>
     </div>`;
-  document.getElementById('editModal').classList.add('open');
+  docudocudocument.getElementById('editModal').classList.add('open');
 }
 
 function clearStaffForm() {
-  ['staffName','staffRole','staffPhone'].forEach(id => document.getElementById(id).value = '');
+  ['staffName','staffRole','staffPhone'].forEach(id => docudocudocument.getElementById(id).value = '');
 }
 
 // ─── BRANCHES ───
 function renderBranches() {
   const branches = getBranches();
-  document.getElementById('branchGrid').innerHTML = branches.map((b, i) => `
+  docudocudocument.getElementById('branchGrid').innerHTML = branches.map((b, i) => `
     <div class="branch-card">
       <div class="branch-card-title">
         <span class="branch-dot"></span>${b.name}
@@ -1131,10 +1131,10 @@ function saveBranch(i) {
   const br = getBranches();
   br[i] = {
     ...br[i],
-    name: document.getElementById(`br_name_${i}`).value,
-    address: document.getElementById(`br_addr_${i}`).value,
-    phone: document.getElementById(`br_phone_${i}`).value,
-    hours: document.getElementById(`br_hours_${i}`).value,
+    name: docudocudocument.getElementById(`br_name_${i}`).value,
+    address: docudocudocument.getElementById(`br_addr_${i}`).value,
+    phone: docudocudocument.getElementById(`br_phone_${i}`).value,
+    hours: docudocudocument.getElementById(`br_hours_${i}`).value,
   };
   setData('esalon_branches', br);
   toast('Салбарын мэдээлэл хадгалагдлаа', 'success');
@@ -1143,7 +1143,7 @@ function saveBranch(i) {
 // ─── TOAST ───
 let toastTimer;
 function toast(msg, type = 'success') {
-  const el = document.getElementById('toast');
+  const el = docudocudocument.getElementById('toast');
   el.textContent = (type === 'success' ? '✓ ' : '✕ ') + msg;
   el.className = `toast toast-${type} show`;
   clearTimeout(toastTimer);
@@ -1161,12 +1161,12 @@ function logout() {
 
   // — SETTINGS —
   function renderSettings() {
-      document.getElementById('settingTitle').value = localStorage.getItem('title') || '';
-      document.getElementById('settingDesc').value = localStorage.getItem('desc') || '';
+      docudocudocument.getElementById('settingTitle').value = localStorage.getItem('title') || '';
+      docudocudocument.getElementById('settingDesc').value = localStorage.getItem('desc') || '';
   }
   function saveHeroSettings() {
-      localStorage.setItem('title', document.getElementById('settingTitle').value);
-      localStorage.setItem('desc', document.getElementById('settingDesc').value);
+      localStorage.setItem('title', docudocudocument.getElementById('settingTitle').value);
+      localStorage.setItem('desc', docudocudocument.getElementById('settingDesc').value);
       toast('Hero тохиргоо хадгалагдлаа', 'success');
   }
   function clearNameInput() {
@@ -1176,20 +1176,20 @@ function logout() {
       toast('nameInput амжилттай арилгагдлаа', 'success');
   }
   function changePassword() {
-      const np = document.getElementById('newPass').value;
-      const cp = document.getElementById('confirmPass').value;
+      const np = docudocudocument.getElementById('newPass').value;
+      const cp = docudocudocument.getElementById('confirmPass').value;
       if (!np) { toast('Нууц үг хоосон байна', 'error'); return; }
       if (np !== cp) { toast('Нууц үг таарахгүй байна', 'error'); return; }
       localStorage.setItem('adminPass', np);
-      document.getElementById('newPass').value = '';
-      document.getElementById('confirmPass').value = '';
+      docudocudocument.getElementById('newPass').value = '';
+      docudocudocument.getElementById('confirmPass').value = '';
       toast('Нууц үг амжилттай өөрчлөгдлөө', 'success');
   }
   
   // — USERS —
   function renderUsers() {
       const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const tbody = document.getElementById('usersTableBody');
+      const tbody = docudocudocument.getElementById('usersTableBody');
       if (!users.length) {
             tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text3);padding:40px">Хэрэглэгч байхгүй байна</td></tr>';
             return;
