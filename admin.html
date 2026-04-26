@@ -762,7 +762,11 @@
   </div><!-- end .content -->
 </main>
 
-<script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // ─── AUTH CHECK ───
 // if (localStorage.getItem('role') !== 'admin') {
 //   window.location.href = 'login.html';
@@ -789,11 +793,16 @@ function setData(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
 function getServices() { return getData('esalon_services', DEFAULT_SERVICES); }
 function getStaff() { return getData('esalon_staff', []); }
 function getBranches() { return getData('esalon_branches', DEFAULT_BRANCHES); }
-function getBookings() {
-  // Try common booking keys
-  return getData('bookings', []).concat(getData('esalon_bookings', []));
+async function getBookings() {
+    try {
+          const { data, error } = await supabase.from('bookings').select('*').order('created_at', { ascending: false });
+          if (error) throw error;
+          return data || [];
+    } catch(e) {
+          return getData('bookings', []).concat(getData('esalon_bookings', []));
+    }
 }
-
+    
 // ─── DATE ───
 const now = new Date();
 document.getElementById('dateBadge').textContent =
@@ -829,8 +838,8 @@ function switchTab(name, el) {
       if (name === 'users') renderUsers();
 
 // ─── DASHBOARD ───
-function renderDashboard() {
-  const bookings = getBookings();
+async function renderDashboard() {
+    const bookings = await getBookings();
   const today = now.toISOString().slice(0,10);
   const todayB = bookings.filter(b => (b.date||b.time||'').startsWith(today));
   const uniquePhones = [...new Set(bookings.map(b => b.phone).filter(Boolean))];
@@ -866,11 +875,11 @@ function statusBadge(s) {
 }
 
 // ─── BOOKINGS ───
-function renderBookings() {
+async function renderBookings() {
   const q = (document.getElementById('searchInput').value || '').toLowerCase();
   const branch = document.getElementById('branchFilter').value;
   const status = document.getElementById('statusFilter').value;
-  let bookings = getBookings();
+      let bookings = await getBookings();
   if (q) bookings = bookings.filter(b => (b.name||'').toLowerCase().includes(q) || (b.phone||'').includes(q));
   if (branch) bookings = bookings.filter(b => b.branch === branch);
   if (status) bookings = bookings.filter(b => (b.status||'pending') === status);
