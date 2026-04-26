@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+h<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -210,7 +210,11 @@ select option{background:#1e1e1e;}
   </div>
 </div>
 
-<script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 var role = localStorage.getItem('role');
 var currentUser = localStorage.getItem('currentUser');
 if(role === 'admin') document.getElementById('adminBtn').style.display = 'inline';
@@ -298,21 +302,25 @@ function pickDate(dateStr, el) {
   updateSummary();
 }
 
-function renderSlots() {
+async function renderSlots() {
   var grid = document.getElementById('slotsGrid');
   grid.innerHTML = '';
   if(!selectedDate) {
     grid.innerHTML = '<div class="no-slots">Өдөр сонгоно уу</div>';
     return;
   }
-  var bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-  var bookedTimes = bookings.filter(function(b) {
-    var bDate = b.time ? b.time.split('T')[0] : '';
-    return bDate === selectedDate && b.branch === getBranchName();
-  }).map(function(b) {
-    return b.time ? b.time.split('T')[1] : '';
-  });
-
+    var { data: bookingsData } = await supabase
+        .from('bookings')
+        .select('*')
+        .eq('status', 'pending');
+      var bookings = bookingsData || [];
+      var bookedTimes = bookings.filter(function(b) {
+              var bDate = b.time ? b.time.split('T')[0] : '';
+              return bDate === selectedDate && b.branch === getBranchName();
+      }).map(function(b) {
+              return b.time ? b.time.split('T')[1] : '';
+      });
+  
   var dateObj = new Date(selectedDate);
   var isSunday = dateObj.getDay() === 0;
   var startH = isSunday ? 10 : WORK_HOURS.start;
@@ -385,7 +393,7 @@ document.getElementById('nameInput').addEventListener('input', updateSubmitBtn);
 document.getElementById('phoneInput').addEventListener('input', updateSubmitBtn);
 
 function submitBooking(e) {
-  e.preventDefault();
+  async e.preventDefault();
   var name = document.getElementById('nameInput').value.trim();
   var phone = document.getElementById('phoneInput').value.trim();
   var service = document.getElementById('service').value;
@@ -414,10 +422,12 @@ function submitBooking(e) {
     user: currentUser || 'guest'
   };
 
-  var bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-  bookings.push(booking);
-  localStorage.setItem('bookings', JSON.stringify(bookings));
-
+    var { error } = await supabase.from('bookings').insert([booking]);
+      if (error) {
+              alert('Алдаа гарлаа: ' + error.message);
+              return;
+      }
+  
   var d = new Date(selectedDate);
   var dateFormatted = d.getFullYear() + '/' + pad(d.getMonth()+1) + '/' + pad(d.getDate());
 
