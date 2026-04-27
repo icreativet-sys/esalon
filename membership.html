@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+  <html lang="mn">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership — the Hairly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+      :root{--primary:#2A1F18;--ivory:#FAF7F2;--sand:#E8DDD0;--accent:#C8B49A;--sage:#88A898;}
+      *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--primary);color:var(--ivory);}
+    .nav{position:fixed;top:0;width:100%;background:rgba(42,31,24,0.85);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(200,180,154,0.15);}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;padding:0 24px;height:64px;}
+    .logo{font-size:1.4rem;font-weight:700;color:var(--ivory);text-decoration:none;}
+    .nav-links{display:flex;gap:32px;list-style:none;}
+    .nav-links a{color:var(--accent);text-decoration:none;font-size:0.9rem;transition:color 0.2s;}
+    .nav-links a:hover{color:var(--ivory);}
+    .nav-cta{background:var(--accent);color:var(--primary);padding:8px 20px;border-radius:4px;text-decoration:none;font-size:0.85rem;font-weight:700;}
+    .hero{padding:120px 24px 60px;text-align:center;}
+    .eyebrow{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+    .hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:700;font-style:italic;margin-bottom:16px;}
+    .hero p{color:var(--sand);max-width:500px;margin:0 auto 48px;line-height:1.7;}
+    .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:960px;margin:0 auto;padding:0 24px 60px;}
+    .tier{border:1px solid rgba(200,180,154,0.15);border-radius:12px;padding:36px 28px;text-align:center;position:relative;transition:all 0.3s;}
+    .tier:hover{border-color:var(--accent);transform:translateY(-4px);}
+    .tier.featured{border-color:var(--accent);background:rgba(200,180,154,0.06);}
+    .tier-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--primary);padding:4px 16px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;}
+    .tier-icon{font-size:2.5rem;margin-bottom:16px;}
+    .tier-name{font-size:1.1rem;font-weight:700;margin-bottom:8px;}
+    .tier-price{font-size:0.85rem;color:var(--accent);margin-bottom:20px;letter-spacing:0.05em;}
+    .tier-features{list-style:none;text-align:left;margin-bottom:24px;}
+    .tier-features li{padding:6px 0;font-size:0.85rem;color:var(--sand);border-bottom:1px solid rgba(200,180,154,0.08);}
+    .tier-features li::before{content:"✓ ";color:var(--accent);}
+    .tier-btn{display:block;padding:10px 0;background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:4px;text-decoration:none;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;width:100%;transition:all 0.2s;}
+    .tier-btn:hover,.tier.featured .tier-btn{background:var(--accent);color:var(--primary);}
+    .register{max-width:440px;margin:0 auto;padding:0 24px 80px;}
+    .register h2{font-size:1.5rem;font-weight:700;margin-bottom:8px;text-align:center;}
+    .register p{color:var(--sand);text-align:center;margin-bottom:32px;font-size:0.9rem;}
+    .form-group{margin-bottom:20px;}
+    label{display:block;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+    input,select{width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,180,154,0.2);border-radius:4px;color:var(--ivory);font-family:inherit;font-size:0.95rem;outline:none;transition:border 0.2s;}
+    input:focus,select:focus{border-color:var(--accent);}
+    select option{background:var(--primary);}
+    .submit-btn{width:100%;padding:14px;background:var(--accent);color:var(--primary);border:none;border-radius:4px;font-size:0.9rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;font-family:inherit;}
+    .submit-btn:hover{opacity:0.85;}
+    .msg{display:none;padding:14px;border-radius:4px;text-align:center;margin-top:16px;font-size:0.9rem;}
+    .msg.success{background:rgba(136,168,152,0.15);border:1px solid var(--sage);color:var(--sage);}
+    .msg.error{background:rgba(200,100,100,0.1);border:1px solid #e88;color:#e88;}
+    footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(200,180,154,0.1);font-size:0.8rem;color:var(--accent);}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">the Hairly</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Нүүр</a></li>
+        <li><a href="booking.html">Цаг захиалах</a></li>
+        <li><a href="academy.html">Academy</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="franchise.html">Franchise</a></li>
+        <li><a href="membership.html">Membership</a></li>
+      </ul>
+      <a class="nav-cta" href="login.html">Нэвтрэх</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <p class="eyebrow">Exclusive Members</p>
+    <h1>Membership</h1>
+    <p>Hairly-н онцгой гишүүн болж, тусгай үйлчилгээ, урамшуулал болон давуу эрхийг эдлээрэй.</p>
+  </div>
+
+  <div class="tiers">
+    <div class="tier">
+      <div class="tier-icon">🤍</div>
+      <div class="tier-name">Member</div>
+      <div class="tier-price">ҮНЭГҮЙ</div>
+      <ul class="tier-features">
+        <li>Цаг захиалгын хандалт</li>
+        <li>Хуримтлалын оноо</li>
+        <li>Мэдэгдэл авах</li>
+      </ul>
+      <button class="tier-btn" onclick="selectTier('member')">Бүртгүүлэх</button>
+    </div>
+    <div class="tier">
+      <div class="tier-icon">🥇</div>
+      <div class="tier-name">Gold</div>
+      <div class="tier-price">500,000₮+ зарцуулалт</div>
+      <ul class="tier-features">
+        <li>Member давуу эрхүүд</li>
+        <li>10% хөнгөлөлт</li>
+        <li>Урьдчилсан цаг захиалга</li>
+        <li>Тусгай бэлэг</li>
+      </ul>
+      <button class="tier-btn" onclick="selectTier('gold')">Бүртгүүлэх</button>
+    </div>
+    <div class="tier featured">
+      <div class="tier-badge">ХАМГИЙН АЛДАРТАЙ</div>
+      <div class="tier-icon">💎</div>
+      <div class="tier-name">Platinum</div>
+      <div class="tier-price">2,000,000₮+ зарцуулалт</div>
+      <ul class="tier-features">
+        <li>Gold давуу эрхүүд</li>
+        <li>20% хөнгөлөлт</li>
+        <li>VIP цаг захиалга</li>
+        <li>Хувийн менежер</li>
+        <li>Онцгой арга хэмжээнд урилга</li>
+      </ul>
+      <button class="tier-btn" onclick="selectTier('platinum')">Бүртгүүлэх</button>
+    </div>
+    <div class="tier">
+      <div class="tier-icon">⬛</div>
+      <div class="tier-name">Black</div>
+      <div class="tier-price">Урилгаар</div>
+      <ul class="tier-features">
+        <li>Platinum давуу эрхүүд</li>
+        <li>30% хөнгөлөлт</li>
+        <li>Онцгой үйлчилгээ</li>
+        <li>Хувийн загварч</li>
+        <li>Нийгэмлэгт дуртай цагт</li>
+      </ul>
+      <button class="tier-btn" onclick="selectTier('black')">Бүртгүүлэх</button>
+    </div>
+  </div>
+
+  <div class="register" id="register-section">
+    <h2>Бүртгүүлэх</h2>
+    <p>Мэдээллээ оруулж гишүүнчлэлийн хүсэлт илгээнэ үү.</p>
+    <div class="form-group">
+      <label>Нэр</label>
+      <input type="text" id="reg-name" placeholder="Таны нэр">
+    </div>
+    <div class="form-group">
+      <label>Утасны дугаар</label>
+      <input type="tel" id="reg-phone" placeholder="99XXXXXX">
+    </div>
+    <div class="form-group">
+      <label>Гишүүнчлэлийн түвшин</label>
+      <select id="reg-tier">
+        <option value="member">Member — Үнэгүй</option>
+        <option value="gold">Gold — 500,000₮+</option>
+        <option value="platinum">Platinum — 2,000,000₮+</option>
+        <option value="black">Black — Урилгаар</option>
+      </select>
+    </div>
+    <button class="submit-btn" onclick="submitRegistration()">ХҮСЭЛТ ИЛГЭЭХ</button>
+    <div class="msg" id="msg"></div>
+  </div>
+
+  <footer>
+    &copy; the Hairly 2026 &middot; hairly.mn
+  </footer>
+
+  <script>
+    const SUPABASE_URL = 'https://xywxkxrcziltzuwdkcfx.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_laiq0RvM-GHWajcetITwHQ_PZ8t6ToU';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    function selectTier(tier) {
+      const sel = document.getElementById('reg-tier');
+      sel.value = tier;
+      document.getElementById('register-section').scrollIntoView({behavior:'smooth'});
+}
+
+    async function submitRegistration() {
+      const name = document.getElementById('reg-name').value.trim();
+      const phone = document.getElementById('reg-phone').value.trim();
+      const tier = document.getElementById('reg-tier').value;
+      const msgEl = document.getElementById('msg');
+
+      if (!name || !phone) {
+        msgEl.textContent = 'Нэр болон утасны дугаараа оруулна уу.';
+        msgEl.className = 'msg error';
+        msgEl.style.display = 'block';
+        return;
+}
+
+      const { error } = await supabase.from('users').insert([{
+        name, phone, tier, points: 0
+          }]);
+
+      if (error) {
+        msgEl.textContent = 'Алдаа гарлаа: ' + (error.message || 'Дахин оролдоно уу.');
+        msgEl.className = 'msg error';
+} else {
+        msgEl.textContent = 'Амжилттай бүртгэгдлээ! Бид тантай холбоо барих болно.';
+        msgEl.className = 'msg success';
+        document.getElementById('reg-name').value = '';
+        document.getElementById('reg-phone').value = '';
+}
+      msgEl.style.display = 'block';
+}
+  </script>
+</body>
+</html>
